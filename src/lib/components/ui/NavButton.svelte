@@ -2,7 +2,7 @@
 
 </script>
 
-<div class="bg">
+<div class="row">
 
 </div>
 

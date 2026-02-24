@@ -55,7 +55,7 @@
 			<p class="hint">Nice—Svelte updates the DOM automatically when state changes.</p>
 		{/if}
 
-		<Button></Button>
+<!--		<Button></Button>-->
 
 		<BabylonDemo></BabylonDemo>
 
@@ -64,6 +64,7 @@
 	</header>
 
 	<section class="card">
+		<div class="row bg-red-200 h-100 w-100"></div>
 		<h2>Mini Todo (each / events / immutable updates)</h2>
 
 		<form class="row" on:submit|preventDefault={addTodo}>
