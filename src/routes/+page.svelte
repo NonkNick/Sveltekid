@@ -1,5 +1,8 @@
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
+	import BabylonDemo from '$lib/components/demo/BabylonDemo.svelte';
+	import BabylonButton from '$lib/components/demo/BabylonButton.svelte';
+
 	let name = 'world';
 	let count = 0;
 
@@ -7,6 +10,10 @@
 	let newTodo = '';
 
 	$: greeting = `Hello, ${name}!`;
+
+	function doThing() {
+		console.log('3D button pressed');
+	}
 
 	function addTodo() {
 		const text = newTodo.trim();
@@ -46,9 +53,16 @@
 		{#if count >= 5}
 			<p class="hint">Nice—Svelte updates the DOM automatically when state changes.</p>
 		{/if}
+
+		<!--		<Button></Button>-->
+
+		<BabylonDemo></BabylonDemo>
+
+		<!--		<BabylonButton label="Do it" onPress={doThing} />-->
 	</header>
 
 	<section class="card">
+		<div class="row bg-red-200 h-100 w-100"></div>
 		<h2>Mini Todo (each / events / immutable updates)</h2>
 
 		<form class="row" on:submit|preventDefault={addTodo}>
