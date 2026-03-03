@@ -1,7 +1,7 @@
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
-	import BabylonDemo from "$lib/components/demo/BabylonDemo.svelte";
-	import BabylonButton from "$lib/components/demo/BabylonButton.svelte";
+	import BabylonDemo from '$lib/components/demo/BabylonDemo.svelte';
+	import BabylonButton from '$lib/components/demo/BabylonButton.svelte';
 
 	let name = 'world';
 	let count = 0;
@@ -12,7 +12,7 @@
 	$: greeting = `Hello, ${name}!`;
 
 	function doThing() {
-		console.log("3D button pressed");
+		console.log('3D button pressed');
 	}
 
 	function addTodo() {
@@ -48,19 +48,17 @@
 			<button class="btn" on:click={() => (count += 1)}>
 				Clicked <strong>{count}</strong> time{count === 1 ? '' : 's'}
 			</button>
-
 		</div>
 
 		{#if count >= 5}
 			<p class="hint">Nice—Svelte updates the DOM automatically when state changes.</p>
 		{/if}
 
-<!--		<Button></Button>-->
+		<!--		<Button></Button>-->
 
 		<BabylonDemo></BabylonDemo>
 
-<!--		<BabylonButton label="Do it" onPress={doThing} />-->
-
+		<!--		<BabylonButton label="Do it" onPress={doThing} />-->
 	</header>
 
 	<section class="card">
