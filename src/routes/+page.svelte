@@ -1,7 +1,6 @@
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
 	import BabylonDemo from '$lib/components/demo/BabylonDemo.svelte';
-	import BabylonButton from '$lib/components/demo/BabylonButton.svelte';
 
 </script>
 
