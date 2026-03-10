@@ -1,7 +1,7 @@
 <!-- src/routes/+page.svelte -->
 <script lang="ts">
-	import BabylonDemo from '$lib/components/demo/BabylonDemo.svelte';
-
+	import BabylonDemo from "$lib/components/demo/BabylonDemo.svelte";
+	import ToggleButton from "$lib/components/ui/ToggleButton.svelte";
 </script>
 
 <svelte:head>
@@ -12,15 +12,13 @@
 	<header class="hero">
 		<span class="badge">Svelte</span>
 		<h1>yarr</h1>
+		<ToggleButton class="h-10">test</ToggleButton>
 		<p class="sub">
 			A tiny page showing: <code>$:</code> reactive statements, bindings, events, and templating.
 		</p>
 
-
 		<BabylonDemo></BabylonDemo>
-
 	</header>
-
 </main>
 
 <style>
@@ -83,5 +81,4 @@
 		padding: 2px 6px;
 		border-radius: 6px;
 	}
-
 </style>

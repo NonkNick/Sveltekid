@@ -1,29 +1,29 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount } from "svelte";
 
 	// WebGL (Engine): bundle default GLSL shader sources (prevents /src/Shaders/default.*.fx 404s)
-	import '@babylonjs/core/Shaders/default.vertex';
-	import '@babylonjs/core/Shaders/default.fragment';
+	import "@babylonjs/core/Shaders/default.vertex";
+	import "@babylonjs/core/Shaders/default.fragment";
 
-	import { Engine } from '@babylonjs/core/Engines/engine.js';
-	import { Scene } from '@babylonjs/core/scene.js';
-	import { FreeCamera } from '@babylonjs/core/Cameras/freeCamera.js';
-	import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight.js';
-	import { Vector3 } from '@babylonjs/core/Maths/math.vector.js';
-	import { Color3, Color4 } from '@babylonjs/core/Maths/math.color.js';
-	import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial.js';
-	import { PointerEventTypes } from '@babylonjs/core/Events/pointerEvents.js';
+	import { Engine } from "@babylonjs/core/Engines/engine.js";
+	import { Scene } from "@babylonjs/core/scene.js";
+	import { FreeCamera } from "@babylonjs/core/Cameras/freeCamera.js";
+	import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight.js";
+	import { Vector3 } from "@babylonjs/core/Maths/math.vector.js";
+	import { Color3, Color4 } from "@babylonjs/core/Maths/math.color.js";
+	import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial.js";
+	import { PointerEventTypes } from "@babylonjs/core/Events/pointerEvents.js";
 
-	import '@babylonjs/core/Culling/ray.js';
-	import '@babylonjs/core/Meshes/Builders/boxBuilder.js';
-	import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder.js';
+	import "@babylonjs/core/Culling/ray.js";
+	import "@babylonjs/core/Meshes/Builders/boxBuilder.js";
+	import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder.js";
 
 	interface Props {
 		label?: string;
 		onPress?: () => void;
 	}
 
-	let { label = 'Click', onPress }: Props = $props();
+	let { label = "Click", onPress }: Props = $props();
 
 	let canvas: HTMLCanvasElement;
 
@@ -39,17 +39,17 @@
 		scene.clearColor = new Color4(0, 0, 0, 0);
 
 		// Fixed camera, no controls (no zoom/pan/rotate)
-		const camera = new FreeCamera('cam', new Vector3(0, 0, -4), scene);
+		const camera = new FreeCamera("cam", new Vector3(0, 0, -4), scene);
 		camera.setTarget(Vector3.Zero());
 		// Don't attach controls — camera is static
 
-		new HemisphericLight('light', new Vector3(0.3, 1, 0.2), scene);
+		new HemisphericLight("light", new Vector3(0.3, 1, 0.2), scene);
 
-		const btn = MeshBuilder.CreateBox('btn', { width: 2.4, height: 0.8, depth: 0.4 }, scene);
+		const btn = MeshBuilder.CreateBox("btn", { width: 2.4, height: 0.8, depth: 0.4 }, scene);
 		btn.isPickable = true;
 		btn.rotation.set(0.15, -0.25, 0);
 
-		const mat = new StandardMaterial('btnMat', scene);
+		const mat = new StandardMaterial("btnMat", scene);
 		mat.diffuseColor = new Color3(0.15, 0.15, 0.18);
 		mat.specularColor = new Color3(0.3, 0.3, 0.3);
 		btn.material = mat;
@@ -111,10 +111,10 @@
 
 		engine.resize();
 		const onResize = () => engine.resize();
-		window.addEventListener('resize', onResize);
+		window.addEventListener("resize", onResize);
 
 		return () => {
-			window.removeEventListener('resize', onResize);
+			window.removeEventListener("resize", onResize);
 			scene.dispose();
 			engine.dispose();
 		};

@@ -1,3 +1,21 @@
-@import 'tailwindcss';
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    --color-accent: oklch(79% 0.13 60);
+    --color-surface: oklch(100% 0 0);
+    --color-foreground: oklch(20% 0.02 40);
+}
+
+:root {
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --color-accent: oklch(72% 0.14 55);
+    --color-surface: oklch(18% 0.01 40);
+    --color-foreground: oklch(96% 0.01 75);
+}

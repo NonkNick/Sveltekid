@@ -1,27 +1,27 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount } from "svelte";
 
 	// WebGPU needs WGSL shader sources available. Without these, Babylon will try to fetch
 	// /src/ShadersWGSL/default.*.fx at runtime (Vite dev server => 404).
-	import '@babylonjs/core/ShadersWGSL/default.vertex';
-	import '@babylonjs/core/ShadersWGSL/default.fragment';
+	import "@babylonjs/core/ShadersWGSL/default.vertex";
+	import "@babylonjs/core/ShadersWGSL/default.fragment";
 
-	import { Scene } from '@babylonjs/core/scene.js';
-	import { ArcRotateCamera } from '@babylonjs/core/Cameras/arcRotateCamera.js';
-	import { HemisphericLight } from '@babylonjs/core/Lights/hemisphericLight.js';
-	import { Vector3 } from '@babylonjs/core/Maths/math.vector.js';
-	import { Color3 } from '@babylonjs/core/Maths/math.color.js';
+	import { Scene } from "@babylonjs/core/scene.js";
+	import { ArcRotateCamera } from "@babylonjs/core/Cameras/arcRotateCamera.js";
+	import { HemisphericLight } from "@babylonjs/core/Lights/hemisphericLight.js";
+	import { Vector3 } from "@babylonjs/core/Maths/math.vector.js";
+	import { Color3 } from "@babylonjs/core/Maths/math.color.js";
 
-	import '@babylonjs/core/Meshes/Builders/groundBuilder.js';
-	import '@babylonjs/core/Meshes/Builders/boxBuilder.js';
-	import { MeshBuilder } from '@babylonjs/core/Meshes/meshBuilder.js';
+	import "@babylonjs/core/Meshes/Builders/groundBuilder.js";
+	import "@babylonjs/core/Meshes/Builders/boxBuilder.js";
+	import { MeshBuilder } from "@babylonjs/core/Meshes/meshBuilder.js";
 
-	import { StandardMaterial } from '@babylonjs/core/Materials/standardMaterial.js';
+	import { StandardMaterial } from "@babylonjs/core/Materials/standardMaterial.js";
 
-	import { createBabylonEngine } from '$lib/babylon/createEngine.js';
+	import { createBabylonEngine } from "$lib/babylon/createEngine.js";
 
 	let canvas: HTMLCanvasElement;
-	let backend: 'webgpu' | 'webgl' | 'initializing' = 'initializing';
+	let backend: "webgpu" | "webgl" | "initializing" = "initializing";
 	let errorMessage: string | null = null;
 
 	onMount(() => {
@@ -41,32 +41,25 @@
 				const scene = new Scene(engine);
 				scene.clearColor = new Color3(0.06, 0.07, 0.09).toColor4(1);
 
-				const camera = new ArcRotateCamera(
-					'camera',
-					Math.PI / 2,
-					Math.PI / 2.6,
-					8,
-					new Vector3(0, 1, 0),
-					scene
-				);
+				const camera = new ArcRotateCamera("camera", Math.PI / 2, Math.PI / 2.6, 8, new Vector3(0, 1, 0), scene);
 				camera.attachControl(canvas, true);
 
 				// Make sure buffer matches CSS size (helps WebGPU show up reliably)
 				engine.resize();
 				requestAnimationFrame(() => engine.resize());
 
-				new HemisphericLight('hemi', new Vector3(0, 1, 0), scene);
+				new HemisphericLight("hemi", new Vector3(0, 1, 0), scene);
 
-				const ground = MeshBuilder.CreateGround('ground', { width: 12, height: 12 }, scene);
-				const groundMat = new StandardMaterial('groundMat', scene);
+				const ground = MeshBuilder.CreateGround("ground", { width: 12, height: 12 }, scene);
+				const groundMat = new StandardMaterial("groundMat", scene);
 				groundMat.diffuseColor = new Color3(0.2, 0.22, 0.26);
 				groundMat.specularColor = new Color3(0.05, 0.05, 0.05);
 				ground.material = groundMat;
 
-				const box = MeshBuilder.CreateBox('box', { size: 1.5 }, scene);
+				const box = MeshBuilder.CreateBox("box", { size: 1.5 }, scene);
 				box.position = new Vector3(0, 1, 0);
 
-				const boxMat = new StandardMaterial('boxMat', scene);
+				const boxMat = new StandardMaterial("boxMat", scene);
 				boxMat.diffuseColor = new Color3(0.55, 0.72, 1.0);
 				boxMat.specularColor = new Color3(0.9, 0.9, 0.9);
 				box.material = boxMat;
@@ -79,15 +72,15 @@
 				engine.runRenderLoop(() => scene.render());
 
 				const onResize = () => engine.resize();
-				window.addEventListener('resize', onResize);
+				window.addEventListener("resize", onResize);
 
 				cleanup = () => {
-					window.removeEventListener('resize', onResize);
+					window.removeEventListener("resize", onResize);
 					scene.dispose();
 					engine.dispose();
 				};
 			} catch (err) {
-				console.error('BabylonDemo failed:', err);
+				console.error("BabylonDemo failed:", err);
 				errorMessage = err instanceof Error ? err.message : String(err);
 			}
 		})();
