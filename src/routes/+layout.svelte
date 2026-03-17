@@ -1,6 +1,7 @@
 <script lang="ts">
 	import "./layout.css";
 	import "../app.css";
+	import { ModeWatcher } from "mode-watcher";
 	import favicon from "$lib/assets/favicon.svg";
 	import Navbar from "$lib/components/Navbar.svelte";
 
@@ -9,8 +10,10 @@
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
+<ModeWatcher />
+
 <Navbar></Navbar>
 
-<main class="min-h-screen pt-0 pb-16 md:pt-16 md:pb-0">
+<main class="pt-0 pb-16 md:pt-16 md:pb-0 min-h-screen">
 	{@render children()}
 </main>

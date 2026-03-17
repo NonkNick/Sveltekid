@@ -9,8 +9,10 @@
 	let { href = "#", children }: Props = $props();
 </script>
 
-<div class="rounded-full h-full grid place-items-center text-center
-			hover:inset-shadow-sm">
+<div
+	class="hover:inset-shadow-sm grid h-full place-items-center rounded-full
+			text-center"
+>
 	<a {href}>
 		{@render children()}
 	</a>
