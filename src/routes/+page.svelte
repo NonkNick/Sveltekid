@@ -2,6 +2,9 @@
 	import BabylonDemo from "$lib/components/demo/BabylonDemo.svelte";
 	import ToggleButton from "$lib/components/ui/ToggleButton.svelte";
 	import {Button} from "$lib/components/ui/button";
+	import * as Card from "$lib/components/ui/card/index.js";
+	import SubmitText from "$lib/components/SubmitText.svelte";
+
 </script>
 
 <svelte:head>
@@ -19,4 +22,40 @@
 		</p>
 	</header>
 
+	<Card.Root class="w-full glass">
+		<Card.Header>
+			<Card.Title>this is card for example yes</Card.Title>
+			<Card.Description
+			>description of tha card aa</Card.Description
+			>
+			<Card.Action>
+				<Button variant="link">a button but link</Button>
+			</Card.Action>
+		</Card.Header>
+		<Card.Content>
+
+		</Card.Content>
+		<Card.Footer class="flex-col gap-2">
+			<Button type="submit" class="w-full">button</Button>
+		</Card.Footer>
+	</Card.Root>
+
+	<Card.Root class="w-full glass">
+<!--		<Card.Header>-->
+<!--			<Card.Title>this is card for example yes</Card.Title>-->
+<!--			<Card.Description-->
+<!--			>description of tha card aa</Card.Description-->
+<!--			>-->
+<!--			<Card.Action>-->
+<!--				<Button variant="link">a button but link</Button>-->
+<!--			</Card.Action>-->
+<!--		</Card.Header>-->
+		<Card.Content>
+			<SubmitText />
+		</Card.Content>
+<!--		<Card.Footer class="flex-col gap-2">-->
+<!--			<Button type="submit" class="w-full">button</Button>-->
+<!--		</Card.Footer>-->
+
+	</Card.Root>
 </main>
