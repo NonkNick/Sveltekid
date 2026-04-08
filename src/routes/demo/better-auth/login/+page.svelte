@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { ActionData } from './$types';
+	import { enhance } from "$app/forms";
+	import type { ActionData } from "./$types";
 
 	let { form }: { form: ActionData } = $props();
 </script>
@@ -30,22 +30,16 @@
 			class="mt-1 rounded-md border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-blue-500 border focus:ring-2 focus:outline-none"
 		/>
 	</label>
-	<button class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition"
-		>Login</button
-	>
-	<button
-		formaction="?/signUpEmail"
-		class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition"
+	<button class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition">Login</button>
+	<button formaction="?/signUpEmail" class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition"
 		>Register</button
 	>
 </form>
-<p class="text-red-500">{form?.message ?? ''}</p>
+<p class="text-red-500">{form?.message ?? ""}</p>
 
 <hr class="my-4" />
 <form method="post" action="?/signInSocial" use:enhance>
 	<input type="hidden" name="provider" value="github" />
 	<input type="hidden" name="callbackURL" value="/demo/better-auth" />
-	<button class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition"
-		>Sign in with GitHub</button
-	>
+	<button class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 transition">Sign in with GitHub</button>
 </form>
