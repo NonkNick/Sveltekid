@@ -8,10 +8,10 @@
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--background-gradient: linear-gradient(
-			135deg,
-			oklch(0.97 0.02 85) 0%,
-			oklch(0.95 0.03 160) 45%,
-			oklch(0.94 0.025 250) 100%
+		135deg,
+		oklch(0.97 0.02 85) 0%,
+		oklch(0.95 0.03 160) 45%,
+		oklch(0.94 0.025 250) 100%
 	);
 	--foreground: oklch(0.129 0.042 264.695);
 	--card: oklch(1 0 0);
@@ -48,10 +48,10 @@
 .dark {
 	--background: oklch(0.129 0.042 264.695);
 	--background-gradient: linear-gradient(
-			135deg,
-			oklch(0.16 0.02 260) 0%,
-			oklch(0.18 0.03 220) 50%,
-			oklch(0.14 0.025 180) 100%
+		135deg,
+		oklch(0.16 0.02 260) 0%,
+		oklch(0.18 0.03 220) 50%,
+		oklch(0.14 0.025 180) 100%
 	);
 	--foreground: oklch(0.984 0.003 247.858);
 	--card: oklch(0.208 0.042 265.755);
@@ -136,30 +136,34 @@
 /*TODO: niet werkend bedenk ff goede manier om bepaalde glass styling wat herbruikbaarder te maken zonder ai slop*/
 @layer components {
 	.glass {
-		@apply bg-card/80 text-card-foreground border border-border backdrop-blur-sm;
+		@apply bg-card/80 text-card-foreground border-border backdrop-blur-sm border;
 	}
 }
 /*---break---*/
 @custom-variant data-open {
-	&:where([data-state="open"]), &:where([data-open]:not([data-open="false"])) {
+	&:where([data-state="open"]),
+	&:where([data-open]:not([data-open="false"])) {
 		@slot;
 	}
 }
 /*---break---*/
 @custom-variant data-closed {
-	&:where([data-state="closed"]), &:where([data-closed]:not([data-closed="false"])) {
+	&:where([data-state="closed"]),
+	&:where([data-closed]:not([data-closed="false"])) {
 		@slot;
 	}
 }
 /*---break---*/
 @custom-variant data-checked {
-	&:where([data-state="checked"]), &:where([data-checked]:not([data-checked="false"])) {
+	&:where([data-state="checked"]),
+	&:where([data-checked]:not([data-checked="false"])) {
 		@slot;
 	}
 }
 /*---break---*/
 @custom-variant data-unchecked {
-	&:where([data-state="unchecked"]), &:where([data-unchecked]:not([data-unchecked="false"])) {
+	&:where([data-state="unchecked"]),
+	&:where([data-unchecked]:not([data-unchecked="false"])) {
 		@slot;
 	}
 }
@@ -171,13 +175,15 @@
 }
 /*---break---*/
 @custom-variant data-disabled {
-	&:where([data-disabled="true"]), &:where([data-disabled]:not([data-disabled="false"])) {
+	&:where([data-disabled="true"]),
+	&:where([data-disabled]:not([data-disabled="false"])) {
 		@slot;
 	}
 }
 /*---break---*/
 @custom-variant data-active {
-	&:where([data-state="active"]), &:where([data-active]:not([data-active="false"])) {
+	&:where([data-state="active"]),
+	&:where([data-active]:not([data-active="false"])) {
 		@slot;
 	}
 }

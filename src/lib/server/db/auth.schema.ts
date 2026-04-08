@@ -33,6 +33,7 @@ export const session = pgTable(
 	(table) => [index("session_userId_idx").on(table.userId)]
 );
 
+// for OAth sign in
 export const account = pgTable(
 	"account",
 	{
