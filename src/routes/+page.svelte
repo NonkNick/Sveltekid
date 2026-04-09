@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BabylonDemo from "$lib/components/demo/BabylonDemo.svelte";
-	import ToggleButton from "$lib/components/ui/ToggleButton.svelte";
 	import { Button } from "$lib/components/ui/button";
 	import * as Card from "$lib/components/ui/card/index.js";
 	import SubmitText from "$lib/components/SubmitText.svelte";
@@ -18,7 +17,6 @@
 			>Svelte</span
 		>
 		<h1 class="mt-3 mb-1.5 leading-tight text-[40px]">yarr</h1>
-		<ToggleButton class="h-10">test</ToggleButton>
 		<p class="mb-3.5 text-muted-foreground">
 			A tiny page showing: <code class="bg-muted px-1.5 py-0.5 rounded-md">$:</code> reactive statements, bindings, events,
 			and templating.
