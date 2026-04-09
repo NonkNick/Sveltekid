@@ -56,6 +56,13 @@
 				</NavigationMenu.Link>
 			</NavigationMenu.Item>
 			<NavigationMenu.Item>
+				<NavigationMenu.Link>
+					{#snippet child()}
+						<a href="/game" class={navigationMenuTriggerStyle()}>Game</a>
+					{/snippet}/}
+				</NavigationMenu.Link>
+			</NavigationMenu.Item>
+			<NavigationMenu.Item>
 				{#if $session.data}
 					<span class="text-sm">Welcome, {$session.data.user.email}</span>
 				{:else}
