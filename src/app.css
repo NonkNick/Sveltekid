@@ -13,6 +13,11 @@
 		oklch(0.95 0.03 160) 45%,
 		oklch(0.94 0.025 250) 100%
 	);
+	--navbar-gradient: linear-gradient(
+			to top,
+			rgba(255, 255, 255, 0.1),
+			rgba(177, 206, 198, 0.93)
+	);
 	--foreground: oklch(0.129 0.042 264.695);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.129 0.042 264.695);
@@ -52,6 +57,11 @@
 		oklch(0.16 0.02 260) 0%,
 		oklch(0.18 0.03 220) 50%,
 		oklch(0.14 0.025 180) 100%
+	);
+	--navbar-gradient: linear-gradient(
+			to top,
+			rgba(24, 24, 27, 0.2),
+			rgba(251, 146, 60, 0.4)
 	);
 	--foreground: oklch(0.984 0.003 247.858);
 	--card: oklch(0.208 0.042 265.755);
