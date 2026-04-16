@@ -12,16 +12,11 @@
 	import { all, createLowlight } from "lowlight";
 	import { toast } from "svelte-sonner";
 	import { SvelteNodeViewRenderer } from "svelte-tiptap";
-	import { AudioExtended } from "../extensions/audio/AudiExtended.js";
-	import { AudioPlaceholder } from "../extensions/audio/AudioPlaceholder.js";
 	import { FileDrop } from "../extensions/HandleFileDrop.js";
 	import { IFrameExtended } from "../extensions/iframe/IFrameExtended.js";
 	import { IFramePlaceholder } from "../extensions/iframe/IFramePlaceholder.js";
 	import { ImageExtended } from "../extensions/image/ImageExtended.js";
 	import { ImagePlaceholder } from "../extensions/image/ImagePlaceholder.js";
-	import slashcommand from "../extensions/slash-command/slashcommand.js";
-	import { VideoExtended } from "../extensions/video/VideoExtended.js";
-	import { VideoPlaceholder } from "../extensions/video/VideoPlaceholder.js";
 	import { getHandleDropImage, getHandlePasteImage } from "../utils.js";
 	import AudioExtendedComp from "./components/AudioExtended.svelte";
 	import AudioPlaceHolderComp from "./components/AudioPlaceHolder.svelte";
@@ -36,8 +31,6 @@
 	import Link from "./menus/Link.svelte";
 	import Math from "./menus/Math.svelte";
 	import MathInline from "./menus/MathInline.svelte";
-	import TableCol from "./menus/TableCol.svelte";
-	import TableRow from "./menus/TableRow.svelte";
 
 	const lowlight = createLowlight(all);
 
@@ -74,13 +67,8 @@
 				}),
 				ImagePlaceholder(ImagePlaceholderComp),
 				ImageExtended(ImageExtendedComp),
-				VideoPlaceholder(VideoPlaceHolderComp),
-				VideoExtended(VideoExtendedComp, onDropOrPaste),
-				AudioPlaceholder(AudioPlaceHolderComp),
-				AudioExtended(AudioExtendedComp, onDropOrPaste),
 				IFramePlaceholder(IFramePlaceHolderComp),
 				IFrameExtended(IFrameExtendedComp),
-				slashcommand(SlashCommandList),
 				FileDrop.configure({
 					handler: onFileSelect
 				}),

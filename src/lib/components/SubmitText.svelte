@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { EdraEditor, EdraToolBar, EdraDragHandleExtended } from "$lib/components/edra/shadcn";
+	import { EdraEditor, EdraToolBar } from "$lib/components/edra/shadcn";
 	import type { Content, Editor } from "@tiptap/core";
 	import { Button } from "$lib/components/ui/button";
 	import * as Alert from "$lib/components/ui/alert/index.js";
@@ -44,7 +44,6 @@
 					class="bg-secondary/50 p-0.5 flex w-full items-center overflow-x-auto border-b border-dashed"
 					{editor}
 				/>
-				<EdraDragHandleExtended {editor} />
 			{/if}
 			<EdraEditor bind:editor {content} class="h-24 max-h-120 pr-2 pl-6 overflow-y-scroll" {onUpdate} />
 		</div>
