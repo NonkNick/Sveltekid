@@ -11,7 +11,6 @@ import StarterKit from "@tiptap/starter-kit";
 import AutoJoiner from "tiptap-extension-auto-joiner";
 import { ColorHighlighter } from "./extensions/ColorHighlighter.js";
 import SearchAndReplace from "./extensions/FindAndReplace.js";
-import { Table, TableCell, TableHeader, TableRow } from "./extensions/table/index.js";
 import "katex/dist/katex.min.css";
 import { Markdown } from "@tiptap/markdown";
 import { InlineMathReplacer } from "./extensions/InlineMathReplacer.js";
@@ -86,10 +85,6 @@ export default (
 			}),
 			SearchAndReplace,
 			AutoJoiner,
-			Table,
-			TableHeader,
-			TableRow,
-			TableCell,
 			InlineMathReplacer,
 			Markdown,
 
