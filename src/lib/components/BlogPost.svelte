@@ -1,7 +1,11 @@
 <script lang="ts">
     import * as Card from "$lib/components/ui/card/index.js";
     import {Button} from "$lib/components/ui/button";
+    // import {post} from "$lib/server/db/posts.schema";
 
+    // const = {
+    //      post
+    // } = $props();
 </script>
 
 <Card.Root class="glass w-full">

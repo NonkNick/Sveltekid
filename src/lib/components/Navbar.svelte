@@ -1,6 +1,7 @@
 <script lang="ts">
 	import SunIcon from "@lucide/svelte/icons/sun";
 	import MoonIcon from "@lucide/svelte/icons/moon";
+	import CircleUser from "@lucide/svelte/icons/circle-user";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Popover from "$lib/components/ui/popover/index.js";
 	import * as NavigationMenu from "$lib/components/ui/navigation-menu/index.js";
@@ -12,6 +13,9 @@
 	import { authClient } from "$lib/auth-client";
 	import {MediaQuery} from "svelte/reactivity";
 	import {browser} from "$app/environment";
+	import * as Avatar from "$lib/components/ui/avatar/index.js";
+	import UserNavbar from "$lib/components/UserNavbar.svelte";
+
 	const session = authClient.useSession();
 
 	// console.log('rendering', { browser });
@@ -62,68 +66,16 @@
 					{/snippet}/}
 				</NavigationMenu.Link>
 			</NavigationMenu.Item>
-			<NavigationMenu.Item>
-				{#if $session.data}
-					<span class="text-sm">Welcome, {$session.data.user.email}</span>
-				{:else}
-					{#if isDesktop.current}
-						<Popover.Root bind:open>
-							<Popover.Trigger>
-								<Button variant="outline" class={navigationMenuTriggerStyle()}>Login</Button>
-							</Popover.Trigger>
-							<Popover.Content>
-								{#if isRegistering}
-									<Label class="text-center text-lg font-semibold mb-4">Register</Label>
 
-								{:else}
-									<LoginForm />
-									<Button type="submit" class="w-1/2" onclick={() => isRegistering = true}>
-										Register
-									</Button>
-								{/if}
-
-
-							</Popover.Content>
-						</Popover.Root>
-					{:else}
-						<Drawer.Root bind:open>
-							<Drawer.Trigger>
-								<Button variant="outline">Login</Button>
-							</Drawer.Trigger>
-							<Drawer.Content class="pt-5">
-
-<!--						// REGISTER-->
-							{#if isRegistering}
-									<Label class="text-center text-lg font-semibold mb-4">Register</Label>
-									<p class="text-center text-sm text-muted-foreground">Registration form placeholder</p>
-
-<!--						// LOGIN-->
-							{:else }
-								<Drawer.Header class="text-start">
-									<Drawer.Title>Login</Drawer.Title>
-									<Drawer.Description>
-										Make changes to your profile here. Click save when you're done.
-									</Drawer.Description>
-								</Drawer.Header>
-								<LoginForm />
-								<div class="flex flex-1 grow flex-row items-center gap-2">
-									<Button type="submit" class="w-1/2" onclick={() => isRegistering = true}>
-										Register
-									</Button>
-								</div>
-<!--								<Button variant="link" class="text-sm text-center mt-4" onclick={() => isRegistering = true}>Register</Button>-->
-							{/if}
-							</Drawer.Content>
-						</Drawer.Root>
-					{/if }
-				{/if}
-			</NavigationMenu.Item>
 			<NavigationMenu.Item>
 				<Button onclick={toggleMode} variant="outline" size="icon" class={navigationMenuTriggerStyle()}>
 					<SunIcon class="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 !transition-all dark:scale-0 dark:-rotate-90" />
 					<MoonIcon class="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 !transition-all dark:scale-100 dark:rotate-0" />
 					<span class="sr-only">Toggle theme</span>
 				</Button>
+			</NavigationMenu.Item>
+			<NavigationMenu.Item>
+				<UserNavbar/>
 			</NavigationMenu.Item>
 		</NavigationMenu.List>
 	</NavigationMenu.Root>

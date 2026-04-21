@@ -4,8 +4,12 @@
 	import * as Card from "$lib/components/ui/card/index.js";
 	import SubmitText from "$lib/components/SubmitText.svelte";
 	import type { PageProps } from './$types';
+	import BlogPost from "$lib/components/BlogPost.svelte";
 
 	let { data }: PageProps = $props();
+
+
+	console.log(data);
 
 </script>
 
@@ -26,13 +30,12 @@
 			and templating.
 		</p>
 	</header>
-	<Card.Root class="w-full">
-		<Card.Content>
-			<h1>{data.post.title}</h1>
-			<div>{@html data.post.content}</div>
-		</Card.Content>
-	</Card.Root>
 
+
+
+	<!--{#each data as post}-->
+	<!--	<BlogPost {post} />-->
+	<!--{/each}-->
 
 	<Card.Root class="w-full">
 		<Card.Content>

@@ -53,7 +53,7 @@
 		</Button>
 	</div>
 {:else}
-	<Alert.Root variant="destructive" class="fixed top-4 right-4 z-50">
+	<Alert.Root variant="destructive">
 		<AlertCircleIcon />
 		<Alert.Title>Not logged in .</Alert.Title>
 		<Alert.Description>
