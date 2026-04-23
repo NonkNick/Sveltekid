@@ -75,6 +75,7 @@
 		"@tiptap/pm": "^3.20.5",
 		"@tiptap/starter-kit": "^3.20.5",
 		"@tiptap/suggestion": "^3.20.5",
+		"@types/three": "^0.184.0",
 		"clsx": "^2.1.1",
 		"katex": "^0.16.43",
 		"lowlight": "^3.3.0",
@@ -82,6 +83,7 @@
 		"postgres": "^3.4.8",
 		"svelte-tiptap": "^3.0.1",
 		"tailwind-merge": "^3.5.0",
+		"three": "^0.184.0",
 		"tiptap-extension-auto-joiner": "^0.1.3"
 	}
 }

@@ -6,15 +6,18 @@
     import { Label } from "$lib/components/ui/label";
     import { navigationMenuTriggerStyle } from "./ui/navigation-menu/navigation-menu-trigger.svelte";
     import LoginForm from "$lib/components/LoginForm.svelte";
-    import { authClient } from "$lib/auth-client.ts";
     import {MediaQuery} from "svelte/reactivity";
     import {browser} from "$app/environment";
     import * as Avatar from "$lib/components/ui/avatar";
-    import UserNavbar from "$lib/components/UserNavbar.svelte";
     import RegisterForm from "$lib/components/RegisterForm.svelte";
 
-    const session = authClient.useSession();
+    import { page } from "$app/state";
+    import { authClient } from "$lib/auth-client.ts";
 
+    const session = authClient.useSession();
+    // Use server-loaded user first (avoids flash), then stay reactive to client-side auth
+    const user = $derived($session.data?.user ?? page.data.user ?? null);
+    // console.log(user);
     // console.log('rendering', { browser });
 
     // TODO: hydratie probleem, do onMount?
@@ -27,19 +30,62 @@
         }
     });
 
+    async function handleLogout() {
+        await authClient.signOut();
+    }
+
     let open = $state(false);
+    let userMenuOpen = $state(false);
+
     const isDesktop = new MediaQuery("(min-width: 425px)");
 </script>
 
-{#if $session.data}
+{#if user}
 
-    <Avatar.Root class="rounded-lg flex flex-row items-center gap-2">
-        <Avatar.Image 	src={$session.data.user.image ?? '/default_profile_img.svg'}/>
+    {#if isDesktop.current}
+        <Popover.Root bind:open={userMenuOpen}>
+            <Popover.Trigger class="rounded-lg flex flex-row items-center gap-2">
+                <Avatar.Root class="">
+                    <Avatar.Image 	src={user.image ?? '/default_profile_img.svg'}/>
 
-        <Avatar.Fallback>User</Avatar.Fallback>
-        <span class="text-sm">{$session.data.user.name}</span>
+                    <Avatar.Fallback><Avatar.Image 	src='/default_profile_img.svg'/></Avatar.Fallback>
+                    <!--        <span class="text-sm">{user.name}</span>-->
+                </Avatar.Root>
+            </Popover.Trigger>
+            <Popover.Content class="w-56 p-2.5">
+                TEST
+            </Popover.Content>
+        </Popover.Root>
+<!--        TODO: Maak Drawer een global component en verplaats naar layout. interne dingen veranderen via store-->
+    {:else}
+        <Drawer.Root bind:open={userMenuOpen}>
+            <Drawer.Trigger class="rounded-lg flex flex-row items-center gap-2">
+                <Avatar.Root class="">
+                    <Avatar.Image 	src={user.image ?? '/default_profile_img.svg'}/>
 
-    </Avatar.Root>
+                    <Avatar.Fallback><Avatar.Image 	src='/default_profile_img.svg'/></Avatar.Fallback>
+                    <!--        <span class="text-sm">{user.name}</span>-->
+                </Avatar.Root>
+            </Drawer.Trigger>
+
+            <Drawer.Content class="pt-5 p-2.5">
+                    <Drawer.Header class="text-start">
+                        <Drawer.Title>User</Drawer.Title>
+                        <Drawer.Description>
+                            Make changes to your profile here. Click save when you're done.
+                        </Drawer.Description>
+                    </Drawer.Header>
+                <Button variant="outline" class="w-full" onclick={handleLogout}>
+                    Logout
+                </Button>
+            </Drawer.Content>
+        </Drawer.Root>
+    {/if}
+
+
+
+
+
 {:else}
     {#if isDesktop.current}
         <Popover.Root bind:open>
