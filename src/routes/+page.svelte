@@ -5,11 +5,12 @@
 	import SubmitText from "$lib/components/SubmitText.svelte";
 	import type { PageProps } from './$types';
 	import BlogPost from "$lib/components/BlogPost.svelte";
+	import Hero from "$lib/components/Hero.svelte";
 
 	let { data }: PageProps = $props();
 
 
-	console.log(data);
+	// console.log(data);
 
 </script>
 
@@ -18,7 +19,8 @@
 </svelte:head>
 
 <!--<BabylonDemo />-->
-<main class="px-5 py-12 mx-auto grid max-w-[860px] gap-[18px]">
+<Hero></Hero>
+<div class="px-5 py-12 mx-auto grid max-w-[860px] gap-[18px]">
 	<header class="border-border rounded-2xl bg-card text-card-foreground backdrop-blur-sm border p-[22px]">
 		<span
 			class="text-xs font-bold tracking-widest py-1.5 bg-destructive/10 border-destructive/20 text-destructive inline-block rounded-full border px-[10px] uppercase"
@@ -39,7 +41,8 @@
 
 	<Card.Root class="w-full">
 		<Card.Content>
-			<SubmitText />
+			PLACEHOLDER
+<!--			<SubmitText />-->
 		</Card.Content>
 	</Card.Root>
-</main>
+</div>
