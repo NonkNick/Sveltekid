@@ -1,3 +1,15 @@
+map notities
+PMTiles voor tiles, single bestand kan in http server en werkt. geen gekloot met databases.
+protomaps
+leaflet, niet heavy?
+man waarom zijn maps zo overcomplicated
+
+TODO: beter mentaal modeel hebben van hoe het normaal gaat
+data source, tiler, render framework?? wat doet alles etc
+
+
+
+
 # sv
 
 Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).

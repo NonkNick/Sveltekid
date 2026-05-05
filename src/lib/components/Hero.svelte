@@ -1,14 +1,16 @@
 <script lang="ts">
     import { Button } from "$lib/components/ui/button/index.js";
     import ThreeDemo from "$lib/components/demo/ThreeDemo.svelte";
+    import {ui} from "$lib/stores/ui.svelte"
+
 </script>
 
-<div class="w-full bg-blue-300 h-[200px] flex flex-col items-center justify-center">
-    <h1>Hero</h1>
-    <p>This is the hero component</p>
+<div class="w-full  h-[200px] flex flex-col items-center justify-end overflow-hidden">
 
-    <Button variant="default" size="lg">Play</Button>
-    <ThreeDemo class="absolute inset-0" />
+    {#if !ui.hidden}
+    <Button onclick={() => ui.hidden = !ui.hidden} variant="positive" size="xl" class="w-[100px]">Play</Button>
+    {/if}
+    <ThreeDemo class="absolute inset-0 -z-10" />
 
 </div>
 
