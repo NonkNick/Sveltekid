@@ -12,10 +12,10 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-
+		"pmtiles:extract-nl": "docker run --rm -v .\\static:/data protomaps/go-pmtiles extract https://build.protomaps.com/20260507.pmtiles /data/netherlands.pmtiles --bbox=3.37,50.75,7.21,53.47",
+		"pmtiles:extract-nl-linux": "docker run --rm -v $(pwd)/static:/data protomaps/go-pmtiles extract https://build.protomaps.com/20260507.pmtiles /data/netherlands.pmtiles --bbox=3.37,50.75,7.21,53.47",
 		"db:start": "docker compose up",
 		"db:start-linux": "sudo systemctl start docker && docker compose up",
-
 		"db:push": "drizzle-kit push",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
@@ -34,6 +34,7 @@
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.1.18",
 		"@types/node": "^24",
+		"@types/pbf": "^3.0.5",
 		"better-auth": "^1.4.18",
 		"bits-ui": "^2.16.3",
 		"drizzle-kit": "^0.31.8",
@@ -58,6 +59,7 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.7.6",
+		"@mapbox/vector-tile": "^2.0.4",
 		"@tiptap/core": "^3.20.5",
 		"@tiptap/extension-bubble-menu": "^3.20.5",
 		"@tiptap/extension-code-block-lowlight": "^3.20.5",
@@ -83,6 +85,8 @@
 		"katex": "^0.16.43",
 		"lowlight": "^3.3.0",
 		"mode-watcher": "^1.1.0",
+		"pbf": "^4.0.1",
+		"pmtiles": "^4.4.1",
 		"postgres": "^3.4.8",
 		"svelte-tiptap": "^3.0.1",
 		"tailwind-merge": "^3.5.0",
