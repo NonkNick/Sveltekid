@@ -12,7 +12,7 @@
     import RegisterForm from "$lib/components/RegisterForm.svelte";
 
     import { page } from "$app/state";
-    import { authClient } from "$lib/auth-client.ts";
+    import { authClient } from "$lib/auth-client";
 
     const session = authClient.useSession();
     // Use server-loaded user first (avoids flash), then stay reactive to client-side auth
@@ -54,6 +54,9 @@
             </Popover.Trigger>
             <Popover.Content class="w-56 p-2.5">
                 TEST
+                <Button variant="outline" class="w-full" onclick={handleLogout}>
+                    Logout
+                </Button>
             </Popover.Content>
         </Popover.Root>
 <!--        TODO: Maak Drawer een global component en verplaats naar layout. interne dingen veranderen via store-->

@@ -15,6 +15,8 @@
 	import {browser} from "$app/environment";
 	import * as Avatar from "$lib/components/ui/avatar/index.js";
 	import UserNavbar from "$lib/components/UserNavbar.svelte";
+	import {ui} from "$lib/stores/ui.svelte"
+
 
 	const session = authClient.useSession();
 
@@ -55,7 +57,7 @@
 			<NavigationMenu.Item>
 				<NavigationMenu.Link>
 					{#snippet child()}
-						<a href="/" class={navigationMenuTriggerStyle()}>Home</a>
+						<a onclick={() => ui.hidden = false} href="/" class={navigationMenuTriggerStyle()}>Home</a>
 					{/snippet}
 				</NavigationMenu.Link>
 			</NavigationMenu.Item>
