@@ -7,6 +7,10 @@
 	import Hero from "$lib/components/Hero.svelte";
 	import {ui} from "$lib/stores/ui.svelte";
 	import { fly } from 'svelte/transition';
+	import { T } from '@threlte/core'
+	import CanvasPortal from '$lib/components/CanvasPortal.svelte'
+	import LavaLamp from "$lib/components/threlte/LavaLamp.svelte";
+
 
 
 	let { data }: PageProps = $props();
@@ -22,6 +26,9 @@
 
 
 <Hero></Hero>
+<CanvasPortal>
+	<LavaLamp></LavaLamp>
+</CanvasPortal>
 {#if !ui.hidden}
 	<div transition:fly={{ y: 150, duration: 300 }} class="px-5 py-12 mx-auto grid max-w-[860px] gap-[18px]">
 		<header class="border-border rounded-2xl bg-card text-card-foreground backdrop-blur-sm border p-[22px]">
@@ -49,4 +56,6 @@
 			</Card.Content>
 		</Card.Root>
 	</div>
+
+
 {/if}
