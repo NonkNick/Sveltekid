@@ -20,9 +20,9 @@ async function inspect() {
     console.log("\n=== TILEJSON ===");
     console.log(JSON.stringify(tileJson, null, 2));
 
-    // 4. Fetch a single tile — Amsterdam city center at z14
-    // Tile coords for Amsterdam: z=14, x=8383, y=5382
-    const result = await p.getZxy(14, 8383, 5382);
+
+    // Tile coords for Amsterdam: await p.getZxy(7, 65, 42);
+    const result = await p.getZxy(7, 65, 42);
     if (!result) {
         console.log("\nTile not found in archive");
         return;
