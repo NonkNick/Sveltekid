@@ -19,11 +19,11 @@
 <div class="w-full  h-[200px] flex flex-col items-center justify-end overflow-hidden">
 
     {#if !ui.hidden}
-    <Button onclick={() => ui.hidden = !ui.hidden} variant="positive" size="xl" class="w-[100px]">Play</Button>
+        <Button onclick={() => ui.hidden = !ui.hidden} variant="positive" size="xl" class="w-[100px]">Play</Button>
     {/if}
 <!--    <ThreeDemo class="absolute inset-0 -z-10" />-->
 
-<!--    <script src="$lib/game/main.ts"></script>-->
+    <!--    <script src="$lib/game/main.ts"></script>-->
 
 <!--    <CanvasPortal>-->
 <!--        <T.PerspectiveCamera-->

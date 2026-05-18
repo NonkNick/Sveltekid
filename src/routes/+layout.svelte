@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<div>
+<div class="canvas-bg">
 	<Canvas>
 		<CanvasPortalTarget />
 	</Canvas>
@@ -36,4 +36,10 @@
 		pointer-events: none;
 
 	}
+  .canvas-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+  }
 </style>
