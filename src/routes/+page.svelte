@@ -10,6 +10,7 @@
 	import { T } from '@threlte/core'
 	import CanvasPortal from '$lib/components/CanvasPortal.svelte'
 	import LavaLamp from "$lib/components/threlte/LavaLamp.svelte";
+	import TestScene from "$lib/components/threlte/TestScene.svelte";
 
 
 
@@ -27,6 +28,7 @@
 
 <Hero></Hero>
 <CanvasPortal>
+<!--	<TestScene></TestScene>-->
 	<LavaLamp></LavaLamp>
 </CanvasPortal>
 {#if !ui.hidden}

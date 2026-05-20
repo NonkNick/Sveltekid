@@ -1,22 +1,24 @@
 <script lang="ts">
 	import CanvasPortalTarget from '$lib/components/CanvasPortalTarget.svelte'
 	import { Canvas } from '@threlte/core'
-	import type { Snippet } from 'svelte'
+	// import type { Snippet } from 'svelte'
 	import "../app.css";
 	import { ModeWatcher } from "mode-watcher";
 	import favicon from "$lib/assets/favicon.svg";
 	import Navbar from "$lib/components/Navbar.svelte";
 
 	let { children } = $props();
-
 </script>
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
-<div>
+<div class="canvas-bg">
 	<Canvas>
-		<CanvasPortalTarget />
+			<CanvasPortalTarget />
 	</Canvas>
 </div>
+
 <ModeWatcher />
 
 <Navbar></Navbar>
@@ -36,4 +38,10 @@
 		pointer-events: none;
 
 	}
+  .canvas-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+  }
 </style>

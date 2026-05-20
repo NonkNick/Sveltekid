@@ -7,6 +7,7 @@ man waarom zijn maps zo overcomplicated
 TODO: beter mentaal modeel hebben van hoe het normaal gaat
 data source, tiler, render framework?? wat doet alles etc
 
+PMTiles ->
 
 
 
