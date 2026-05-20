@@ -48,7 +48,9 @@
                 <Avatar.Root class="">
                     <Avatar.Image class="dark:invert" src={user.image ?? '/default_profile_img.svg'}/>
 
-                    <Avatar.Fallback><Avatar.Image class="dark:invert"	src='/default_profile_img.svg'/></Avatar.Fallback>
+                    <Avatar.Fallback>
+                        <Avatar.Image class="dark:invert" 	src='/default_profile_img.svg'/>
+                    </Avatar.Fallback>
                     <!--        <span class="text-sm">{user.name}</span>-->
                 </Avatar.Root>
             </Popover.Trigger>
@@ -64,7 +66,7 @@
         <Drawer.Root bind:open={userMenuOpen}>
             <Drawer.Trigger class="rounded-lg flex flex-row items-center gap-2">
                 <Avatar.Root class="">
-                    <Avatar.Image 	src={user.image ?? '/default_profile_img.svg'}/>
+                    <Avatar.Image class="dark:invert" 	src={user.image ?? '/default_profile_img.svg'}/>
 
                     <Avatar.Fallback><Avatar.Image 	src='/default_profile_img.svg'/></Avatar.Fallback>
                     <!--        <span class="text-sm">{user.name}</span>-->

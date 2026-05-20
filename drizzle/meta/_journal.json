@@ -15,6 +15,13 @@
       "when": 1771019830871,
       "tag": "0001_messy_thunderbolt",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1778589014030,
+      "tag": "0002_lush_colleen_wing",
+      "breakpoints": true
     }
   ]
 }
