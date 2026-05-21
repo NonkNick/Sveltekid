@@ -54,8 +54,8 @@
 		</Card.Root>
 
 		{#each data.posts as post (post.id)}
-		{:else}
 			<BlogPost {post} />
+		{:else}
 			<Card.Root class="w-full">
 				<Card.Content>No posts yet.</Card.Content>
 			</Card.Root>

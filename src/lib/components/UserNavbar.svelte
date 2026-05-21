@@ -61,7 +61,7 @@
                 </Button>
             </Popover.Content>
         </Popover.Root>
-<!--        TODO: Maak Drawer een global component en verplaats naar layout. interne dingen veranderen via store-->
+<!--        TODO: Maak Drawer een global Page en verplaats naar layout. interne dingen veranderen via store-->
     {:else}
         <Drawer.Root bind:open={userMenuOpen}>
             <Drawer.Trigger class="rounded-lg flex flex-row items-center gap-2">

@@ -22,6 +22,13 @@
       "when": 1778589014030,
       "tag": "0002_lush_colleen_wing",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1779349992875,
+      "tag": "0003_new_siren",
+      "breakpoints": true
     }
   ]
 }
