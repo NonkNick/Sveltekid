@@ -3,6 +3,7 @@
     import { interactivity } from '@threlte/extras'
     import { OrbitControls, Stars, Grid } from '@threlte/extras'
     import { Spring } from 'svelte/motion'
+    import { SheetObject } from '@threlte/theatre'
 
     interactivity()
 
@@ -31,37 +32,52 @@
 
 <!-- Camera -->
 <T.PerspectiveCamera
-        makeDefault
-        position={[2, 1, 5]}
-        fov={50}
+  makeDefault
+  position={[2, 1, 5]}
+  fov={50}
 >
     <OrbitControls
-            enableDamping
-            enablePan={false}
-            enableZoom={false}
-            autoRotate
-            autoRotateSpeed={0.3}
+      enableDamping
+      enablePan={false}
+      enableZoom={false}
+      autoRotate
+      autoRotateSpeed={0.3}
     />
 </T.PerspectiveCamera>
+
+<!-- Lights -->
+<T.AmbientLight intensity={0.5} />
+
+<T.DirectionalLight
+  position={[5, 5, 5]}
+  intensity={1.5}
+  castShadow
+/>
+
+<T.PointLight
+  position={[-5, 3, -5]}
+  intensity={0.6}
+/>
 
 <!-- Stars -->
 <Stars {...stars} />
 
-<!-- Grid -->
-<Grid
-        infiniteGrid
-        fadeOrigin={[0, 0, 0]}
-        fadeDistance={10}
-        cellColor="#dddddd"
-        sectionColor="#dddddd"
-/>
-
 <!-- Your cube -->
-<T.Mesh
-        position={[3, 0, 0]}
-        scale={0.5}
-        rotation.y={rotation}
->
-    <T.BoxGeometry args={[1, 2, 1]} />
-    <T.MeshBasicMaterial color="red" />
-</T.Mesh>
+<!--todo: sheetobject fixen zodat scene niet fuckt.-->
+<SheetObject key="Box">
+    {#snippet children({ Transform, Sync })}
+        <Transform>
+            <T.Mesh
+              receiveShadow
+              castShadow
+              position.y={0.5}
+            >
+                <T.BoxGeometry args={[1, 2, 1]} />
+
+                <T.MeshStandardMaterial color="#b00d03">
+                    <Sync color="red" />
+                </T.MeshStandardMaterial>
+            </T.Mesh>
+        </Transform>
+    {/snippet}
+</SheetObject>

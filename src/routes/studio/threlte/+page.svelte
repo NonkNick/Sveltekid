@@ -1,18 +1,16 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
 	import { Canvas } from '@threlte/core';
+	import { Studio } from '@threlte/studio';
 	import LavaLamp from '$lib/components/threlte/LavaLamp.svelte';
-
-	const isDev = import.meta.env.MODE === 'development';
 </script>
 
-{#if isDev}
+{#if dev}
 	<div class="studio-canvas">
 		<Canvas>
-			{#await import('@threlte/studio') then { Studio }}
-				<Studio>
-					<LavaLamp />
-				</Studio>
-			{/await}
+			<Studio>
+				<LavaLamp />
+			</Studio>
 		</Canvas>
 	</div>
 {:else}
@@ -23,6 +21,6 @@
     .studio-canvas {
         position: fixed;
         inset: 0;
-        z-index: 100;
+        /*z-index: 100;*/
     }
 </style>

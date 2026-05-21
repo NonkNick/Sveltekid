@@ -1,47 +1,45 @@
 <script lang="ts">
-	import CanvasPortalTarget from '$lib/components/CanvasPortalTarget.svelte'
-	import { Canvas } from '@threlte/core'
-	// import type { Snippet } from 'svelte'
-	import "../app.css";
-	import { ModeWatcher } from "mode-watcher";
-	import favicon from "$lib/assets/favicon.svg";
-	import Navbar from "$lib/components/Navbar.svelte";
+	import { page } from '$app/state';
+	import CanvasPortalTarget from '$lib/components/CanvasPortalTarget.svelte';
+	import { Canvas } from '@threlte/core';
+	import '../app.css';
+	import { ModeWatcher } from 'mode-watcher';
+	import favicon from '$lib/assets/favicon.svg';
+	import Navbar from '$lib/components/Navbar.svelte';
 
 	let { children } = $props();
+
+	//hacky manier zodat svelte meewerkt, verwijder buiten dev
+	const isStudio = $derived(page.url.pathname.startsWith('/studio'));
 </script>
+
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<div class="canvas-bg">
-	<Canvas>
+{#if !isStudio}
+	<div class="canvas-bg">
+		<Canvas>
 			<CanvasPortalTarget />
-	</Canvas>
-</div>
+		</Canvas>
+	</div>
+{/if}
 
 <ModeWatcher />
 
-<Navbar></Navbar>
-
+{#if !isStudio}
+	<Navbar />
+{/if}
 
 <main class="pt-0 pb-16 md:pt-16 md:pb-0 min-h-screen">
-	{@render children()}
+	{@render children?.()}
 </main>
 
 <style>
-	div {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		pointer-events: none;
-		z-index: -1;
-	}
-  .canvas-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-  }
+    .canvas-bg {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+    }
 </style>
