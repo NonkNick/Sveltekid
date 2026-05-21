@@ -37,7 +37,7 @@
 		element.style.position = "absolute";
 
 		if (!editor || editor.isDestroyed) {
-			console.warn("BubbleMenu component does not have editor prop or editor is destroyed.");
+			console.warn("BubbleMenu Page does not have editor prop or editor is destroyed.");
 			return;
 		}
 
