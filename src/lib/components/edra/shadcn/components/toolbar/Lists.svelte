@@ -35,13 +35,13 @@
 				size: "icon",
 				class: cn(
 					"gap-0 p-0",
-					"hover:bg-accent dark:hover:bg-accent/50! [&_svg]:size-2 border-0 bg-transparent! ring-0",
+					"border-0 bg-transparent! ring-0 hover:bg-accent dark:hover:bg-accent/50! [&_svg]:size-2",
 					isActive && "bg-muted!"
 				)
 			})}
 		>
-			<ListIcon class="stroke-primary size-4!" />
-			<ChevronDown class="text-muted-foreground size-2!" />
+			<ListIcon class="size-4! stroke-primary" />
+			<ChevronDown class="size-2! text-muted-foreground" />
 		</DropdownMenu.Trigger>
 	</EdraToolTip>
 	<DropdownMenu.Content portalProps={{ to: document.getElementById("edra-editor") ?? "undefined" }}>

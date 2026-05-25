@@ -84,7 +84,7 @@
 	{editor}
 	pluginKey="edra-bubble-menu"
 	{shouldShow}
-	class={cn("edra-bubble-menu bg-popover gap-0.5 rounded-lg p-0 z-50! flex h-fit w-fit items-center border", className)}
+	class={cn("edra-bubble-menu z-50! flex h-fit w-fit items-center gap-0.5 rounded-lg border bg-popover p-0", className)}
 	options={{
 		shift: true,
 		autoPlacement: {

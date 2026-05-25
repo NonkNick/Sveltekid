@@ -36,8 +36,8 @@
 				class: cn("gap-0 p-0", "border-0 ring-0", isActive && "bg-muted")
 			})}
 		>
-			<AlignmentIcon class="stroke-primary size-4!" />
-			<ChevronDown class="text-muted-foreground size-2!" />
+			<AlignmentIcon class="size-4! stroke-primary" />
+			<ChevronDown class="size-2! text-muted-foreground" />
 		</DropdownMenu.Trigger>
 	</EdraToolTip>
 	<DropdownMenu.Content portalProps={{ to: document.getElementById("edra-editor") ?? "undefined" }}>

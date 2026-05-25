@@ -10,8 +10,8 @@
 </script>
 
 <div
-	class="hover:inset-shadow-sm grid h-full place-items-center rounded-full
-			text-center"
+	class="grid h-full place-items-center rounded-full text-center
+			hover:inset-shadow-sm"
 >
 	<a {href}>
 		{@render children()}

@@ -42,13 +42,13 @@
 				disabled={!editor.isEditable}
 				class={buttonVariants({
 					variant: "ghost",
-					class: "text-muted-foreground h-6! rounded-sm p-1 w-fit capitalize"
+					class: "h-6! w-fit rounded-sm p-1 text-muted-foreground capitalize"
 				})}
 			>
 				{defaultLanguage}
 			</Popover.Trigger>
 			<Popover.Content
-				class="text-primary! max-h-96 w-36 p-0"
+				class="max-h-96 w-36 p-0 text-primary!"
 				portalProps={{ disabled: true, to: undefined }}
 				onCloseAutoFocus={(e) => e.preventDefault()}
 			>
@@ -72,7 +72,7 @@
 				</Command.Root>
 			</Popover.Content>
 		</Popover.Root>
-		<Button variant="ghost" class="text-muted-foreground size-6! rounded-sm p-0.5 print:hidden" onclick={copyCode}>
+		<Button variant="ghost" class="size-6! rounded-sm p-0.5 text-muted-foreground print:hidden" onclick={copyCode}>
 			{#if isCopying}
 				<Check class="size-4 text-green-500" />
 			{:else}

@@ -38,14 +38,14 @@
 	<div class="flex flex-row items-center justify-between">
 		<!--	TODO: shit is voor voorbeeld, ding is heavy dus niet laden zolang er geen tekst gemaakt word. ook de nutteloze onderdelen nog verwijderen.-->
 
-		<div class="bg-background rounded-md border border-dashed">
+		<div class="rounded-md border border-dashed bg-background">
 			{#if editor && !editor.isDestroyed}
 				<EdraToolBar
-					class="bg-secondary/50 p-0.5 flex w-full items-center overflow-x-auto border-b border-dashed"
+					class="flex w-full items-center overflow-x-auto border-b border-dashed bg-secondary/50 p-0.5"
 					{editor}
 				/>
 			{/if}
-			<EdraEditor bind:editor {content} class="h-24 max-h-120 pr-2 pl-6 overflow-y-scroll" {onUpdate} />
+			<EdraEditor bind:editor {content} class="h-24 max-h-120 overflow-y-scroll pr-2 pl-6" {onUpdate} />
 		</div>
 		<Button size="icon-lg" onclick={submit}>
 			<SendHorizontal />
@@ -58,12 +58,11 @@
 		<Alert.Title>Not logged in .</Alert.Title>
 		<Alert.Description>
 			<p>This submission component only works when logged in.</p>
-			<ul class="text-sm list-inside list-disc">
+			<ul class="list-inside list-disc text-sm">
 				<li>Go log in</li>
 			</ul>
 		</Alert.Description>
 	</Alert.Root>
-
 {/if}
 
 <style>

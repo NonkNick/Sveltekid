@@ -19,7 +19,7 @@
 
 <div
 	class={cn(
-		"edra-toolbar bg-muted/25 gap-0.5 rounded-lg mx-auto flex items-center border-[0.5px] border-dashed",
+		"edra-toolbar mx-auto flex items-center gap-0.5 rounded-lg border-[0.5px] border-dashed bg-muted/25",
 		className
 	)}
 	transition:slide

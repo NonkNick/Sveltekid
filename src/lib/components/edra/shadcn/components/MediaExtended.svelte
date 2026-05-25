@@ -135,7 +135,7 @@
 <NodeViewWrapper
 	id="resizable-container-media"
 	class={cn(
-		"my-4! rounded-md relative flex flex-col border border-transparent",
+		"relative my-4! flex flex-col rounded-md border border-transparent",
 		selected && "ring-1",
 		node.attrs.align === "left" && "left-0 translate-x-0",
 		node.attrs.align === "center" && "left-1/2 -translate-x-1/2",
@@ -143,13 +143,13 @@
 	)}
 	style={`width: ${node.attrs.width}`}
 >
-	<div class={cn("group rounded-md relative flex flex-col", resizing && "")}>
+	<div class={cn("group relative flex flex-col rounded-md", resizing && "")}>
 		{@render children()}
 		{#if node.attrs.title !== null && node.attrs.title.trim() !== ""}
 			<input
 				value={node.attrs.title}
 				type="text"
-				class="text-muted-foreground my-1 text-sm w-full bg-transparent text-center outline-none"
+				class="my-1 w-full bg-transparent text-center text-sm text-muted-foreground outline-none"
 				onchange={(e) => {
 					const target = e.target as HTMLInputElement;
 					updateAttributes({ title: target.value });
@@ -161,7 +161,7 @@
 				role="button"
 				tabindex="0"
 				aria-label={strings.extension.media.back}
-				class="inset-y-0 w-5 p-2 absolute z-20 flex cursor-col-resize items-center justify-start"
+				class="absolute inset-y-0 z-20 flex w-5 cursor-col-resize items-center justify-start p-2"
 				style="left: 0px"
 				onmousedown={(event: MouseEvent) => {
 					handleResizingPosition(event, "left");
@@ -170,14 +170,14 @@
 					handleTouchStart(event, "left");
 				}}
 			>
-				<div class="bg-muted h-16 w-1 rounded-xl z-20 border opacity-0 transition-all group-hover:opacity-100"></div>
+				<div class="z-20 h-16 w-1 rounded-xl border bg-muted opacity-0 transition-all group-hover:opacity-100"></div>
 			</div>
 
 			<div
 				role="button"
 				tabindex="0"
 				aria-label={strings.extension.media.back}
-				class="inset-y-0 w-5 p-2 absolute z-20 flex cursor-col-resize items-center justify-end"
+				class="absolute inset-y-0 z-20 flex w-5 cursor-col-resize items-center justify-end p-2"
 				style="right: 0px"
 				onmousedown={(event: MouseEvent) => {
 					handleResizingPosition(event, "right");
@@ -186,11 +186,11 @@
 					handleTouchStart(event, "right");
 				}}
 			>
-				<div class="bg-muted h-16 w-1 rounded-xl z-20 border opacity-0 transition-all group-hover:opacity-100"></div>
+				<div class="z-20 h-16 w-1 rounded-xl border bg-muted opacity-0 transition-all group-hover:opacity-100"></div>
 			</div>
 			<div
 				class={cn(
-					"bg-background/50 -top-2 gap-1 rounded p-1 backdrop-blur-sm absolute left-[calc(50%-3rem)] flex items-center border opacity-0 transition-opacity",
+					"absolute -top-2 left-[calc(50%-3rem)] flex items-center gap-1 rounded border bg-background/50 p-1 opacity-0 backdrop-blur-sm transition-opacity",
 					!resizing && "group-hover:opacity-100",
 					openedMore && "opacity-100"
 				)}
@@ -226,7 +226,7 @@
 					>
 						<EllipsisVertical class="size-4" />
 					</DropdownMenu.Trigger>
-					<DropdownMenu.Content align="start" alignOffset={-90} class="mt-1 text-sm overflow-auto">
+					<DropdownMenu.Content align="start" alignOffset={-90} class="mt-1 overflow-auto text-sm">
 						<DropdownMenu.Item
 							onclick={() => {
 								if (node.attrs.title === null || node.attrs.title.trim() === "")

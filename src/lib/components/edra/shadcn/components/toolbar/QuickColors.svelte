@@ -30,19 +30,19 @@
 				style={`color: ${currentColor}; background-color: ${currentHighlight}75;`}
 			>
 				<span>{strings.toolbar.color.templateCharacter}</span>
-				<ChevronDown class="text-muted-foreground size-2!" />
+				<ChevronDown class="size-2! text-muted-foreground" />
 			</div>
 		</EdraToolTip>
 	</Popover.Trigger>
-	<Popover.Content class="shadow-lg size-fit" portalProps={{ disabled: true, to: undefined }}>
-		<div class="text-muted-foreground my-2 text-xs">{strings.toolbar.color.textColors}</div>
-		<div class="gap-2 grid grid-cols-5">
+	<Popover.Content class="size-fit shadow-lg" portalProps={{ disabled: true, to: undefined }}>
+		<div class="my-2 text-xs text-muted-foreground">{strings.toolbar.color.textColors}</div>
+		<div class="grid grid-cols-5 gap-2">
 			{#each quickcolors as color (color)}
 				<Button
 					variant="ghost"
 					class={cn(
-						`size-6 p-0 font-normal border-0`,
-						editor.isActive("textStyle", { color: color.value }) && "font-extrabold border-2",
+						`size-6 border-0 p-0 font-normal`,
+						editor.isActive("textStyle", { color: color.value }) && "border-2 font-extrabold",
 						color.value === "" && "border"
 					)}
 					style={`color: ${color.value}; background-color: ${color.value}50; border-color: ${color.value};`}
@@ -62,13 +62,13 @@
 				</Button>
 			{/each}
 		</div>
-		<div class="text-muted-foreground my-2 text-xs">{strings.toolbar.color.highlightColors}</div>
-		<div class="gap-2 grid grid-cols-5">
+		<div class="my-2 text-xs text-muted-foreground">{strings.toolbar.color.highlightColors}</div>
+		<div class="grid grid-cols-5 gap-2">
 			{#each quickcolors as color (color)}
 				<Button
 					variant="ghost"
 					class={cn(
-						`size-6 p-0 font-normal border-0`,
+						`size-6 border-0 p-0 font-normal`,
 						editor.isActive("highlight", { color: color.value }) && "border-2",
 						color.value === "" && "border"
 					)}

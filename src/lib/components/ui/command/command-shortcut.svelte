@@ -14,7 +14,7 @@
 	bind:this={ref}
 	data-slot="command-shortcut"
 	class={cn(
-		"text-muted-foreground group-data-selected/command-item:text-foreground text-xs tracking-widest ml-auto",
+		"ml-auto text-xs tracking-widest text-muted-foreground group-data-selected/command-item:text-foreground",
 		className
 	)}
 	{...restProps}

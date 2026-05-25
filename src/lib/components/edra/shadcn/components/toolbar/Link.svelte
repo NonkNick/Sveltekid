@@ -42,15 +42,15 @@
 				class:bg-muted={isActive}
 			>
 				<Link />
-				<ChevronDown class="text-muted-foreground size-2!" />
+				<ChevronDown class="size-2! text-muted-foreground" />
 			</div>
 		</EdraToolTip>
 	</Popover.Trigger>
 	<Popover.Content
 		portalProps={{ to: document.getElementById("edra-editor") ?? undefined }}
-		class="w-80 rounded-lg p-0! h-fit"
+		class="h-fit w-80 rounded-lg p-0!"
 	>
-		<form class="gap-0.5 flex items-center" onsubmit={handleSubmit}>
+		<form class="flex items-center gap-0.5" onsubmit={handleSubmit}>
 			<Input placeholder={strings.toolbar.link.insertLinkPlaceholder} bind:value required type="url" />
 			<EdraToolTip tooltip={strings.toolbar.link.insertLink}>
 				<Button type="submit" size="icon">

@@ -101,25 +101,25 @@
 			</Button>
 		</EdraToolTip>
 	</Popover.Trigger>
-	<Popover.Content class="gap-1 p-2 flex w-fit items-center" portalProps={{ disabled: true, to: undefined }}>
+	<Popover.Content class="flex w-fit items-center gap-1 p-2" portalProps={{ disabled: true, to: undefined }}>
 		<Button
 			variant="ghost"
 			size="icon"
-			class={cn("size-7 transition-transform", showMore && "bg-muted rotate-90")}
+			class={cn("size-7 transition-transform", showMore && "rotate-90 bg-muted")}
 			onclick={() => (showMore = !showMore)}
 			title={strings.toolbar.searchAndReplace.showMore}
 		>
 			<ChevronRight />
 		</Button>
-		<div class="gap-1 flex size-full flex-col">
-			<div class="gap-1 flex w-full items-center">
+		<div class="flex size-full flex-col gap-1">
+			<div class="flex w-full items-center gap-1">
 				<Input
 					placeholder={strings.toolbar.searchAndReplace.searchPlaceholder}
 					bind:value={searchText}
 					oninput={() => updateSearchTerm()}
 					class="w-48"
 				/>
-				<span class="text-muted-foreground text-sm">{searchCount > 0 ? searchIndex + 1 : 0}/{searchCount} </span>
+				<span class="text-sm text-muted-foreground">{searchCount > 0 ? searchIndex + 1 : 0}/{searchCount} </span>
 				<EdraToolTip tooltip={strings.toolbar.searchAndReplace.caseSensitive}>
 					<Button
 						variant="ghost"
@@ -157,7 +157,7 @@
 				</EdraToolTip>
 			</div>
 			{#if showMore}
-				<div transition:slide class="gap-1 flex w-full items-center">
+				<div transition:slide class="flex w-full items-center gap-1">
 					<Input
 						placeholder={strings.toolbar.searchAndReplace.replacePlaceholder}
 						bind:value={replaceText}

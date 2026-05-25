@@ -45,7 +45,7 @@
 	contenteditable="false"
 	class={buttonVariants({
 		variant: "secondary",
-		class: "media-placeholder my-4! gap-4 p-6 relative flex w-full items-center justify-start"
+		class: "media-placeholder relative my-4! flex w-full items-center justify-start gap-4 p-6"
 	})}
 	style="user-select: none;"
 	draggable={true}
@@ -55,7 +55,7 @@
 		<Image />
 		<span>{strings.extension.image.insertPlaceholder}</span>
 	{:else}
-		<Loader class="text-primary animate-spin" />
+		<Loader class="animate-spin text-primary" />
 		<span>{strings.extension.image.uploadProcessing}</span>
 	{/if}
 	<Popover.Root bind:open>
@@ -63,7 +63,7 @@
 		<Popover.Content
 			onCloseAutoFocus={(e) => e.preventDefault()}
 			contenteditable={false}
-			class="bg-popover w-96 rounded-lg p-0 z-50"
+			class="z-50 w-96 rounded-lg bg-popover p-0"
 			portalProps={{ disabled: true, to: undefined }}
 		>
 			<Tabs.Root value="local">
@@ -75,7 +75,7 @@
 					<Button class="w-full" onclick={openFileDialog}>{strings.extension.image.uploadButton}</Button>
 				</Tabs.Content>
 				<Tabs.Content value="url" class="py-2">
-					<form onsubmit={handleSubmit} class="gap-2 flex flex-col">
+					<form onsubmit={handleSubmit} class="flex flex-col gap-2">
 						<Input
 							placeholder={strings.extension.image.embedLinkPlaceholder}
 							bind:value={imageUrl}

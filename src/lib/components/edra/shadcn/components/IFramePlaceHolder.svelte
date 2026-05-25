@@ -25,7 +25,7 @@
 	contenteditable="false"
 	class={buttonVariants({
 		variant: "secondary",
-		class: "media-placeholder my-4! p-6 relative w-full justify-start"
+		class: "media-placeholder relative my-4! w-full justify-start p-6"
 	})}
 	style="user-select: none;"
 	draggable={true}
@@ -38,10 +38,10 @@
 		<Popover.Content
 			onCloseAutoFocus={(e) => e.preventDefault()}
 			contenteditable={false}
-			class="bg-popover w-96 p-4 transition-all duration-300"
+			class="w-96 bg-popover p-4 transition-all duration-300"
 			portalProps={{ disabled: true, to: undefined }}
 		>
-			<form onsubmit={handleSubmit} class="gap-2 flex flex-col">
+			<form onsubmit={handleSubmit} class="flex flex-col gap-2">
 				<Input placeholder={strings.extension.iframe.embedLinkPlaceholder} bind:value={iframUrl} required type="url" />
 				<Button type="submit" variant="secondary">{strings.extension.iframe.embedLinkButton}</Button>
 			</form>
