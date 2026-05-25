@@ -40,7 +40,7 @@
 		strategy: "absolute",
 		scrollTarget: parentElement
 	}}
-	class="bg-popover gap-1 rounded-lg shadow-lg flex h-fit w-fit items-center border"
+	class="flex h-fit w-fit items-center gap-1 rounded-lg border bg-popover shadow-lg"
 >
 	<Input
 		bind:value={latex}

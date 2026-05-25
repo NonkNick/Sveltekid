@@ -8,6 +8,6 @@
 <CommandPrimitive.Empty
 	bind:ref
 	data-slot="command-empty"
-	class={cn("py-6 text-sm text-center", className)}
+	class={cn("py-6 text-center text-sm", className)}
 	{...restProps}
 />

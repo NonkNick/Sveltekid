@@ -1,3 +1,6 @@
+// src/app.d.ts
+/// <reference types="vite/client" />
+
 import type { User, Session } from "better-auth";
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
@@ -10,7 +13,6 @@ declare global {
 		}
 
 		// interface Error {}
-		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}

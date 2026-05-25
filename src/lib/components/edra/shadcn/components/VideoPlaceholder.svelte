@@ -45,14 +45,14 @@
 	contenteditable="false"
 	class={buttonVariants({
 		variant: "secondary",
-		class: "media-placeholder my-4! p-6 relative w-full justify-start"
+		class: "media-placeholder relative my-4! w-full justify-start p-6"
 	})}
 	style="user-select: none;"
 	draggable={true}
 	onclick={() => (open = true)}
 >
 	{#if isUploading}
-		<Loader class="text-primary animate-spin" />
+		<Loader class="animate-spin text-primary" />
 		<span>{strings.extension.video.uploadProcessing}</span>
 	{:else}
 		<Video />
@@ -63,7 +63,7 @@
 		<Popover.Content
 			onCloseAutoFocus={(e) => e.preventDefault()}
 			contenteditable={false}
-			class="bg-popover w-96 rounded-lg p-0 transition-all duration-500"
+			class="w-96 rounded-lg bg-popover p-0 transition-all duration-500"
 			portalProps={{ disabled: true, to: undefined }}
 		>
 			<Tabs.Root value="local">
@@ -75,7 +75,7 @@
 					<Button class="w-full" onclick={openFileDialog}>{strings.extension.video.uploadButton}</Button>
 				</Tabs.Content>
 				<Tabs.Content value="url" class="py-2">
-					<form onsubmit={handleSubmit} class="gap-2 flex flex-col">
+					<form onsubmit={handleSubmit} class="flex flex-col gap-2">
 						<Input
 							placeholder={strings.extension.video.embedLinkPlaceholder}
 							bind:value={videoUrl}

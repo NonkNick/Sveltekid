@@ -40,13 +40,13 @@
 				size: "sm",
 				class: cn(
 					"gap-0 p-0",
-					"text-primary! hover:bg-accent dark:hover:bg-accent/50! [&_svg]:size-2 border-0 bg-transparent! ring-0",
+					"border-0 bg-transparent! text-primary! ring-0 hover:bg-accent dark:hover:bg-accent/50! [&_svg]:size-2",
 					className
 				)
 			})}
 		>
 			<span>{currentLabel}</span>
-			<ChevronDown class="text-muted-foreground size-2!" />
+			<ChevronDown class="size-2! text-muted-foreground" />
 		</DropdownMenu.Trigger>
 	</EdraToolTip>
 	<DropdownMenu.Content portalProps={{ to: document.getElementById("edra-editor") ?? "undefined" }}>

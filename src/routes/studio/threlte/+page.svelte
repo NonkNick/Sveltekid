@@ -1,15 +1,16 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
-	import { Canvas } from '@threlte/core';
-	import { Studio } from '@threlte/studio';
-	import LavaLamp from '$lib/components/threlte/LavaLamp.svelte';
+	import { dev } from "$app/environment";
+	import { Canvas } from "@threlte/core";
+	import { Studio } from "@threlte/studio";
+	import LavaLamp from "$lib/components/threlte/LavaLamp.svelte";
+	import Earth from "$lib/components/threlte/Earth.svelte";
 </script>
 
 {#if dev}
 	<div class="studio-canvas">
 		<Canvas>
 			<Studio>
-				<LavaLamp />
+				<Earth />
 			</Studio>
 		</Canvas>
 	</div>
@@ -18,9 +19,9 @@
 {/if}
 
 <style>
-    .studio-canvas {
-        position: fixed;
-        inset: 0;
-        /*z-index: 100;*/
-    }
+	.studio-canvas {
+		position: fixed;
+		inset: 0;
+		/*z-index: 100;*/
+	}
 </style>

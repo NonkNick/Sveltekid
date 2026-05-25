@@ -42,7 +42,7 @@
 		strategy: "absolute",
 		scrollTarget: parentElement
 	}}
-	class="bg-popover gap-1 rounded-lg shadow-lg h-fit w-fit flex-col items-center border"
+	class="h-fit w-fit flex-col items-center gap-1 rounded-lg border bg-popover shadow-lg"
 >
 	<Textarea
 		bind:value={latex}

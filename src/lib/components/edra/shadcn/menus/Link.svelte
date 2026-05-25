@@ -51,13 +51,13 @@
 		strategy: "absolute",
 		scrollTarget: parentElement
 	}}
-	class="bg-popover gap-1 rounded-lg p-0! flex h-fit w-fit items-center border"
+	class="flex h-fit w-fit items-center gap-1 rounded-lg border bg-popover p-0!"
 >
 	{#if !isEditing}
 		<Button
 			variant="link"
 			href={link}
-			class="max-w-120 p-1 truncate overflow-hidden text-ellipsis underline"
+			class="max-w-120 truncate overflow-hidden p-1 text-ellipsis underline"
 			target="_blank"
 		>
 			{link}
@@ -97,7 +97,7 @@
 			</Button>
 		</SimpleTooltip>
 	{:else}
-		<form onsubmit={handleSubmit} class="max-w-120 gap-0.5 flex items-center">
+		<form onsubmit={handleSubmit} class="flex max-w-120 items-center gap-0.5">
 			<Input bind:value={linkInput} required type="url" placeholder={strings.menu.link.enterLinkPlaceholder} />
 			<SimpleTooltip tooltip={strings.menu.link.enterLinkButton}>
 				<Button type="submit" size="icon">
