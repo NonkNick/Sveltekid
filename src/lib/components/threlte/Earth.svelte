@@ -48,6 +48,9 @@
 		enableDamping
 		enablePan
 		enableZoom
+
+		autoRotate
+		autoRotateSpeed={0.3}
 	/>
 </T.PerspectiveCamera>
 
