@@ -8,7 +8,7 @@
 	import earthRough from "$lib/assets/8k_earth_roughness_map.jpg";
 	import moonMap from "$lib/assets/2k_moon.jpg";
 	import sunMap from "$lib/assets/2k_sun.jpg";
-	import milkyWay from "$lib/assets/8k_stars_milky_way.jpg";
+	import milkyWay from "$lib/assets/starmap_2020_8k.png";
 
 	interactivity();
 
@@ -16,11 +16,17 @@
 
 	let earthRef = $state<Mesh>();
 
+	let EARTH_POSITION = $derived<[number, number, number]>(
+		earthRef
+			? [earthRef.position.x, earthRef.position.y, earthRef.position.z]
+			: [0, 0, 0]
+	);
+
 	const stars = {
 		count: 5000,
-		radius: 100,
+		radius: 10,
 		depth: 50,
-		factor: 6,
+		factor: 2,
 		saturation: 1,
 		lightness: 0.8,
 		opacity: 1,
@@ -39,7 +45,7 @@
 	const sunTexturePromise = useTexture(sunMap);
 
 
-	const EARTH_POSITION: [number, number, number] = [-8, 0, 0];
+	// const EARTH_POSITION: [number, number, number] = [-8, 0, 0];
 </script>
 
 <T.PerspectiveCamera makeDefault position={[-8, 1, 5]} fov={50}>
@@ -59,45 +65,50 @@
 {/if}
 
 <Environment
-	isBackground=true
-	url=milkyWay
+	isBackground
+	url={milkyWay}
 />
 
 <Stars {...stars} />
 
 {#await sunTexturePromise then texture}
-	<T.Mesh position={[0, 0, 0]} scale={3}>
-		<T.SphereGeometry args={[1, 64, 64]} />
-		<T.MeshBasicMaterial map={texture} />
-	</T.Mesh>
-	<T.Mesh position={[0, 0, 0]} scale={7}>
-		<T.SphereGeometry args={[1, 32, 32]} />
-		<FakeGlowMaterial glowColor="orange" glowInternalRadius={6} />
-	</T.Mesh>
+	<T.Group position={[ 0, 0, 0 ]}>
+		<T.Mesh position={[0, 0, 0]} scale={3}>
+			<T.SphereGeometry args={[1, 64, 64]} />
+			<T.MeshBasicMaterial map={texture} />
+		</T.Mesh>
+		<T.Mesh position={[0, 0, 0]} scale={7} material.wireframe={false} material.fog={false} material.vertexColors={false} material.colorWrite material.clipShadows={false} material.clipIntersection={false} material.polygonOffset={false} material.side={0} castShadow={false} receiveShadow={false} visible>
+			<T.SphereGeometry args={[1, 32, 32]} />
+			<FakeGlowMaterial glowColor="orange" glowInternalRadius={6} />
+		</T.Mesh>
+	</T.Group>
 {/await}
 
-{#await earthTexturePromise then texture}
-	<T.Mesh
-		bind:ref={earthRef}
-		position={EARTH_POSITION}
-		castShadow
-		receiveShadow
-	>
-		<T.SphereGeometry args={[1, 64, 64]} />
-		<T.MeshStandardMaterial
-			map={texture.map}
-			normalMap={texture.normalMap}
-			normalScale={[0.5, 0.5]}
-			roughnessMap={texture.roughnessMap}
-			roughness={1}
-			metalness={0}
-		/>
-	</T.Mesh>
-{/await}
+<T.Group position={[ 0, 0, 0 ]}>
+	{#await earthTexturePromise then texture}
+		<T.Mesh
+			bind:ref={earthRef}
+			position={[ -10, 0, 0 ]}
+			castShadow
+			receiveShadow
+		>
+			<T.SphereGeometry args={[1, 128, 128]} />
+			<T.MeshStandardMaterial
+				map={texture.map}
+				normalMap={texture.normalMap}
+				normalScale={[0.5, 0.5]}
+				roughnessMap={texture.roughnessMap}
+				roughness={1}
+				metalness={0}
+			/>
+		</T.Mesh>
+	{/await}
 
-{#await moonTexturePromise then texture}
-	<T.Mesh position={[-6, 0, 0]} scale={0.27} castShadow receiveShadow>
-		<T.SphereGeometry args={[1, 64, 64]} />
-		<T.MeshStandardMaterial map={texture} />
-	</T.Mesh>
-{/await}
+	{#await moonTexturePromise then texture}
+		<T.Mesh position={[ -8, 0, 0 ]} scale={0.27} castShadow receiveShadow>
+			<T.SphereGeometry args={[1, 32, 32]} />
+			<T.MeshStandardMaterial map={texture} />
+		</T.Mesh>
+	{/await}
+
+</T.Group>
