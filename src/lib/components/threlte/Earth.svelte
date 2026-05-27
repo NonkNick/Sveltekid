@@ -8,7 +8,7 @@
 	import earthRough from "$lib/assets/8k_earth_roughness_map.jpg";
 	import moonMap from "$lib/assets/2k_moon.jpg";
 	import sunMap from "$lib/assets/2k_sun.jpg";
-	import milkyWay from "$lib/assets/starmap_2020_8k.png";
+	import milkyWay from "$lib/assets/milkyway_2020_8k_final.png";
 
 	interactivity();
 
