@@ -12,7 +12,6 @@ export const post = pgTable("post", {
 	title: text("title").notNull(),
 	slug: text("slug").notNull().unique(),
 	content: jsonb("content").notNull(),
-	status: postStatusEnum("status").notNull().default("draft"),
 	publishedAt: timestamp("published_at"),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at")
@@ -27,3 +26,4 @@ export const postRelations = relations(post, ({ one }) => ({
 		references: [user.id]
 	})
 }));
+

@@ -6,14 +6,12 @@
 	import { ui } from "$lib/stores/ui.svelte";
 	import { fly } from "svelte/transition";
 	import CanvasPortal from "$lib/components/CanvasPortal.svelte";
-	import LavaLamp from "$lib/components/threlte/LavaLamp.svelte";
-	import TestScene from "$lib/components/threlte/TestScene.svelte";
 
-	import SubmitText from "$lib/components/SubmitText.svelte";
 	import { Textarea } from "$lib/components/ui/textarea";
 	import { Button } from "$lib/components/ui/button";
 	import SendHorizontal from "@lucide/svelte/icons/send-horizontal";
 	import Earth from "$lib/components/threlte/Earth.svelte";
+	import { Input } from "$lib/components/ui/input";
 
 	let { data }: PageProps = $props();
 </script>
@@ -42,19 +40,25 @@
 			</p>
 		</header>
 
-		<Card.Root>
-			<Card.Content class="flex flex-row items-center gap-4">
-				test
-				<Textarea />
-				<Button size="icon-lg">
-					<SendHorizontal />
-					<!--    Submit-->
-				</Button>
-			</Card.Content>
-		</Card.Root>
+		<form method="POST">
+			<Card.Root>
+				<Card.Content class="flex flex-col items-stretch gap-4">
+					<Input name="title" placeholder="Title" />
 
-		{#each data.posts as post (post.id)}
-			<BlogPost {post} />
+					<div class="flex flex-row items-center gap-4">
+						<Textarea name="content" placeholder="Write something..." />
+						<Button type="submit" size="icon-lg">
+							<SendHorizontal />
+						</Button>
+					</div>
+				</Card.Content>
+			</Card.Root>
+		</form>
+
+		{#each data.posts as post (post.slug)}
+			<a href={`/blog/${post.slug}`}>
+				<BlogPost {post} />
+			</a>
 		{:else}
 			<Card.Root class="w-full">
 				<Card.Content>No posts yet.</Card.Content>
