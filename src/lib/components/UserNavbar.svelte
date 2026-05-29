@@ -37,7 +37,7 @@
 	let open = $state(false);
 	let userMenuOpen = $state(false);
 
-	const isDesktop = new MediaQuery("(min-width: 425px)");
+	const isDesktop = new MediaQuery("(min-width: 768px)");
 </script>
 
 {#if user}

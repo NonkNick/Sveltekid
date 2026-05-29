@@ -10,9 +10,10 @@
 <Card.Root class="glass w-full">
 	<Card.Header>
 		<Card.Title>{post.title}</Card.Title>
-		<Card.Description>{post.authorId}</Card.Description>
+		<Card.Description>{post.author.name}</Card.Description>
 	</Card.Header>
 	<Card.Content>
 		<p>{post.content.text}</p>
+		{console.log(post)}
 	</Card.Content>
 </Card.Root>

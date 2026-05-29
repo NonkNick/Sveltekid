@@ -3,9 +3,11 @@
 	import { interactivity, useTexture } from "@threlte/extras";
 	import { OrbitControls, Stars, FakeGlowMaterial, Environment } from "@threlte/extras";
 	import type { Mesh, Group } from "three";
-	import dayMap from "$lib/assets/8k_earth_daymap.jpg";
-	import earthNormal from "$lib/assets/8k_earth_normal_map.jpg";
-	import earthRough from "$lib/assets/8k_earth_roughness_map.jpg";
+	import { Color } from "three";
+	import dayMap from "$lib/assets/2k_earth_daymap.jpg";
+	import earthNormal from "$lib/assets/2k_earth_normal_map.jpg";
+	import earthRough from "$lib/assets/2k_earth_roughness_map.jpg";
+	import earthNight from "$lib/assets/2k_earth_nightmap.jpg";
 	import moonMap from "$lib/assets/2k_moon.jpg";
 	import sunMap from "$lib/assets/2k_sun.jpg";
 	import milkyWay from "$lib/assets/milkyway_2020_8k_final.png";
@@ -13,10 +15,11 @@
 	interactivity();
 
 	const TAU = Math.PI * 2
+	const emissiveColor = new Color(1, 1, 1) // Create once, reuse
 
 	let speed = $state(1)
 	let days = $state(0)
-	const daysPerSecond = 1
+	const daysPerSecond = 0.2
 
 	const PERIOD = {
 		earthSpin:  1,
@@ -30,8 +33,6 @@
 	useTask((delta) => {
 		days += delta * daysPerSecond * speed;
 
-		// Move the world so Earth orbits around the camera
-		// 3d is leuk, ja het is totaal logisch dat je niet de camera verplaatsts maar de wereld om je heen verplaatst natuurlijk
 		if (worldRef) {
 			worldRef.position.set(
 				-earthPos[0],
@@ -75,8 +76,10 @@
 	const earthTexturePromise = useTexture({
 		map: dayMap,
 		normalMap: earthNormal,
-		roughnessMap: earthRough
+		roughnessMap: earthRough,
+		emissiveMap: earthNight
 	});
+
 	const moonTexturePromise = useTexture(moonMap);
 	const sunTexturePromise = useTexture(sunMap);
 
@@ -89,12 +92,9 @@
 		enableZoom
 		autoRotate
 		autoRotateSpeed={-0.3}
+		dampingFactor={0.05}
 	/>
 </T.PerspectiveCamera>
-
-{#if earthRef}
-	<T.DirectionalLight position={[0, 0, 0]} target={earthRef} intensity={6} castShadow />
-{/if}
 
 <Environment isBackground url={milkyWay} />
 
@@ -102,16 +102,30 @@
 
 <!-- WORLD GROUP: Everything orbits inside this -->
 <T.Group bind:ref={worldRef}>
+	{#if earthRef}
+		<T.DirectionalLight
+			position={[0, 0, 0]}
+			target={earthRef}
+			intensity={6}
+			castShadow
+			shadow.mapSize={[4096, 4096]}
+			shadow.camera.far={100}
+			shadow.camera.near={0.1}
+			shadow.bias={-0.0001}
+			shadow.normalBias={0.02}
+		/>
+
+	{/if}
 
 	<!-- SUN -->
 	{#await sunTexturePromise then texture}
 		<T.Group position={[0, 0, 0]}>
 			<T.Mesh position={[0, 0, 0]} scale={3}>
-				<T.SphereGeometry args={[1, 64, 64]} />
+				<T.SphereGeometry args={[1, 32, 32]} />
 				<T.MeshBasicMaterial map={texture} />
 			</T.Mesh>
 			<T.Mesh position={[0, 0, 0]} scale={7}>
-				<T.SphereGeometry args={[1, 32, 32]} />
+				<T.SphereGeometry args={[1, 16, 16]} />
 				<FakeGlowMaterial glowColor="orange" glowInternalRadius={6} />
 			</T.Mesh>
 		</T.Group>
@@ -133,8 +147,11 @@
 						normalMap={texture.normalMap}
 						normalScale={[0.5, 0.5]}
 						roughnessMap={texture.roughnessMap}
-						roughness={1}
+						roughness={1.2}
 						metalness={0}
+						emissiveMap={texture.emissiveMap}
+						emissive={emissiveColor}
+						emissiveIntensity={0.5}
 					/>
 				</T.Mesh>
 			{/await}
@@ -148,7 +165,7 @@
 					castShadow
 					receiveShadow
 				>
-					<T.SphereGeometry args={[0.3, 32, 32]} />
+					<T.SphereGeometry args={[0.3, 16, 16]} />
 					<T.MeshStandardMaterial map={texture} />
 				</T.Mesh>
 			{/await}
