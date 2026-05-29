@@ -6,6 +6,7 @@
 	import { ModeWatcher } from "mode-watcher";
 	import favicon from "$lib/assets/favicon.svg";
 	import Navbar from "$lib/components/Navbar.svelte";
+	import { WebGLRenderer } from "three";
 
 	let { children } = $props();
 
@@ -19,7 +20,7 @@
 
 {#if !isStudio}
 	<div class="canvas-bg">
-		<Canvas>
+		<Canvas createRenderer={(canvas)=>{return new WebGLRenderer({canvas,stencil: true })}}>
 			<CanvasPortalTarget />
 		</Canvas>
 	</div>
@@ -28,7 +29,6 @@
 <ModeWatcher />
 
 {#if !isStudio}
-	{console.log("is not studio")}
 	<Navbar />
 {/if}
 
