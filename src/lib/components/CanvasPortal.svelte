@@ -4,9 +4,9 @@
 
 	let { children }: { children: Snippet } = $props();
 
-	addCanvasPortalSnippet(children);
 
-	onDestroy(() => {
-		removeCanvasPortalSnippet(children);
+	$effect(() => {                              // $effect — Svelte rune, client-only, runs post-flush
+		addCanvasPortalSnippet(children);
+		return () => removeCanvasPortalSnippet(children); // cleanup runs on unmount + before re-run
 	});
 </script>

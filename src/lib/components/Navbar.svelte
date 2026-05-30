@@ -52,6 +52,14 @@
 			</NavigationMenu.Item>
 
 			<NavigationMenu.Item>
+				<NavigationMenu.Link>
+					{#snippet child()}
+						<a href="/user" class={navigationMenuTriggerStyle()}>Settings</a>
+					{/snippet}
+				</NavigationMenu.Link>
+			</NavigationMenu.Item>
+
+			<NavigationMenu.Item>
 				<NavigationMenu.Trigger>Studio</NavigationMenu.Trigger>
 				<NavigationMenu.Content>
 					<ul class="grid w-[300px] gap-2 p-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
