@@ -1,5 +1,7 @@
 <script lang="ts">
 	import CircleUser from "@lucide/svelte/icons/circle-user";
+	import CogIcon from "@lucide/svelte/icons/cog";
+	import LogOutIcon from "@lucide/svelte/icons/log-out";
 	import { Button } from "$lib/components/ui/button";
 	import * as Popover from "$lib/components/ui/popover";
 	import * as Drawer from "$lib/components/ui/drawer";
@@ -53,9 +55,32 @@
 					<!--        <span class="text-sm">{user.name}</span>-->
 				</Avatar.Root>
 			</Popover.Trigger>
-			<Popover.Content class="w-56 p-2.5">
-				TEST
-				<Button variant="outline" class="w-full" onclick={handleLogout}>Logout</Button>
+			<Popover.Content class="w-64 p-2.5">
+				<div class="flex items-start justify-between gap-2">
+					<div class="flex min-w-0 items-center gap-3">
+						<Avatar.Root class="size-10">
+							<Avatar.Image class="dark:invert" src={user.image ?? "/default_profile_img.svg"} alt={user.name} />
+							<Avatar.Fallback>
+								<Avatar.Image class="dark:invert" src="/default_profile_img.svg" />
+							</Avatar.Fallback>
+						</Avatar.Root>
+						<div class="min-w-0">
+							<p class="truncate text-sm font-medium">{user.name}</p>
+							<p class="truncate text-xs text-muted-foreground">{user.email}</p>
+						</div>
+					</div>
+					<Button href="/user" variant="ghost" size="icon" title="User settings" onclick={() => (userMenuOpen = false)}>
+						<CogIcon class="size-4" />
+						<span class="sr-only">User settings</span>
+					</Button>
+				</div>
+
+				<div class="my-2.5 border-t border-border"></div>
+
+				<Button variant="outline" class="w-full" onclick={handleLogout}>
+					<LogOutIcon class="size-4" />
+					Logout
+				</Button>
 			</Popover.Content>
 		</Popover.Root>
 		<!--        TODO: Maak Drawer een global Page en verplaats naar layout. interne dingen veranderen via store-->
@@ -72,10 +97,35 @@
 
 			<Drawer.Content class="p-2.5 pt-5">
 				<Drawer.Header class="text-start">
-					<Drawer.Title>User</Drawer.Title>
-					<Drawer.Description>Make changes to your profile here. Click save when you're done.</Drawer.Description>
+					<div class="flex items-start justify-between gap-2">
+						<div class="flex min-w-0 items-center gap-3">
+							<Avatar.Root class="size-10">
+								<Avatar.Image class="dark:invert" src={user.image ?? "/default_profile_img.svg"} alt={user.name} />
+								<Avatar.Fallback>
+									<Avatar.Image class="dark:invert" src="/default_profile_img.svg" />
+								</Avatar.Fallback>
+							</Avatar.Root>
+							<div class="min-w-0 text-start">
+								<Drawer.Title class="truncate">{user.name}</Drawer.Title>
+								<Drawer.Description class="truncate">{user.email}</Drawer.Description>
+							</div>
+						</div>
+						<Button
+							href="/user"
+							variant="ghost"
+							size="icon"
+							title="User settings"
+							onclick={() => (userMenuOpen = false)}
+						>
+							<CogIcon class="size-4" />
+							<span class="sr-only">User settings</span>
+						</Button>
+					</div>
 				</Drawer.Header>
-				<Button variant="outline" class="w-full" onclick={handleLogout}>Logout</Button>
+				<Button variant="outline" class="w-full" onclick={handleLogout}>
+					<LogOutIcon class="size-4" />
+					Logout
+				</Button>
 			</Drawer.Content>
 		</Drawer.Root>
 	{/if}

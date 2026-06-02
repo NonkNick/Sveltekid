@@ -12,6 +12,9 @@ node_modules
 .DS_Store
 Thumbs.db
 
+# User uploads (avatars etc.)
+/static/uploads
+
 # Env
 .env
 .env.*

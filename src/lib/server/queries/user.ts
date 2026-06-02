@@ -15,7 +15,6 @@ export async function getUserById(id: string) {
 	return row ?? null;
 }
 
-
 type UpdatableUserFields = {
 	name: string;
 	email: string;

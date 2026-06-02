@@ -7,6 +7,7 @@
 	import favicon from "$lib/assets/favicon.svg";
 	import Navbar from "$lib/components/Navbar.svelte";
 	import { WebGLRenderer } from "three";
+	import { Toaster } from "$lib/components/ui/sonner/index.js";
 
 	let { children } = $props();
 
@@ -20,13 +21,14 @@
 
 {#if !isStudio}
 	<div class="canvas-bg">
-		<Canvas createRenderer={(canvas)=>{return new WebGLRenderer({canvas,stencil: true })}}>
+		<Canvas>
 			<CanvasPortalTarget />
 		</Canvas>
 	</div>
 {/if}
 
 <ModeWatcher />
+<Toaster />
 
 {#if !isStudio}
 	<Navbar />

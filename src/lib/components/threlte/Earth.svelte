@@ -14,18 +14,18 @@
 
 	interactivity();
 
-	const TAU = Math.PI * 2
-	const emissiveColor = new Color(1, 1, 1) // Create once, reuse
+	const TAU = Math.PI * 2;
+	const emissiveColor = new Color(1, 1, 1); // Create once, reuse
 
-	let speed = $state(1)
-	let days = $state(0)
-	const daysPerSecond = 0.2
+	let speed = $state(1);
+	let days = $state(0);
+	const daysPerSecond = 0.2;
 
 	const PERIOD = {
-		earthSpin:  1,
+		earthSpin: 1,
 		earthOrbit: 365.25,
-		moonOrbit:  27.32,
-	}
+		moonOrbit: 27.32
+	};
 
 	let earthRef = $state<Mesh>();
 	let worldRef = $state<Group>();
@@ -34,31 +34,31 @@
 		days += delta * daysPerSecond * speed;
 
 		if (worldRef) {
-			worldRef.position.set(
-				-earthPos[0],
-				-earthPos[1],
-				-earthPos[2]
-			);
+			worldRef.position.set(-earthPos[0], -earthPos[1], -earthPos[2]);
 		}
 	});
 
-	let earthSpin  = $derived(days / PERIOD.earthSpin  * TAU)
-	let earthOrbit = $derived(days / PERIOD.earthOrbit * TAU)
-	let moonOrbit  = $derived(days / PERIOD.moonOrbit  * TAU)
+	let earthSpin = $derived((days / PERIOD.earthSpin) * TAU);
+	let earthOrbit = $derived((days / PERIOD.earthOrbit) * TAU);
+	let moonOrbit = $derived((days / PERIOD.moonOrbit) * TAU);
 
-	const earthRadius = 20
-	const moonRadius  = 2
-	const earthTilt   = 0.41
+	const earthRadius = 20;
+	const moonRadius = 2;
+	const earthTilt = 0.41;
 
-	let earthPos = $derived<[number, number, number]>(
-		[Math.cos(earthOrbit) * earthRadius, 0, Math.sin(earthOrbit) * earthRadius]
-	)
-	let moonPos = $derived<[number, number, number]>(
-		[Math.cos(moonOrbit) * moonRadius, 0, Math.sin(moonOrbit) * moonRadius]
-	)
-	const moonFaceOffset = Math.PI
+	let earthPos = $derived<[number, number, number]>([
+		Math.cos(earthOrbit) * earthRadius,
+		0,
+		Math.sin(earthOrbit) * earthRadius
+	]);
+	let moonPos = $derived<[number, number, number]>([
+		Math.cos(moonOrbit) * moonRadius,
+		0,
+		Math.sin(moonOrbit) * moonRadius
+	]);
+	const moonFaceOffset = Math.PI;
 
-	const camOffset: [number, number, number] = [-1.5, 1.5, 3.5]
+	const camOffset: [number, number, number] = [-1.5, 1.5, 3.5];
 
 	const stars = {
 		count: 5000,
@@ -82,18 +82,10 @@
 
 	const moonTexturePromise = useTexture(moonMap);
 	const sunTexturePromise = useTexture(sunMap);
-
 </script>
 
 <T.PerspectiveCamera makeDefault position={camOffset} fov={70}>
-	<OrbitControls
-		enableDamping
-		enablePan
-		enableZoom
-		autoRotate
-		autoRotateSpeed={-0.3}
-		dampingFactor={0.05}
-	/>
+	<OrbitControls enableDamping enablePan enableZoom autoRotate autoRotateSpeed={-0.3} dampingFactor={0.05} />
 </T.PerspectiveCamera>
 
 <Environment isBackground url={milkyWay} />
@@ -114,7 +106,6 @@
 			shadow.bias={-0.0001}
 			shadow.normalBias={0.02}
 		/>
-
 	{/if}
 
 	<!-- SUN -->
@@ -135,12 +126,7 @@
 	<T.Group position={earthPos}>
 		<T.Group rotation.z={earthTilt}>
 			{#await earthTexturePromise then texture}
-				<T.Mesh
-					rotation.y={earthSpin}
-					bind:ref={earthRef}
-					castShadow
-					receiveShadow
-				>
+				<T.Mesh rotation.y={earthSpin} bind:ref={earthRef} castShadow receiveShadow>
 					<T.SphereGeometry args={[1, 128, 128]} />
 					<T.MeshStandardMaterial
 						map={texture.map}
@@ -160,16 +146,11 @@
 		<!-- MOON -->
 		<T.Group position={moonPos}>
 			{#await moonTexturePromise then texture}
-				<T.Mesh
-					rotation.y={-moonOrbit + moonFaceOffset}
-					castShadow
-					receiveShadow
-				>
+				<T.Mesh rotation.y={-moonOrbit + moonFaceOffset} castShadow receiveShadow>
 					<T.SphereGeometry args={[0.3, 16, 16]} />
 					<T.MeshStandardMaterial map={texture} />
 				</T.Mesh>
 			{/await}
 		</T.Group>
 	</T.Group>
-
 </T.Group>
