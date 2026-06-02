@@ -28,17 +28,17 @@
 <!--<SubmitText></SubmitText>-->
 {#if !ui.hidden}
 	<div transition:fly={{ y: 150, duration: 300 }} class="mx-auto grid max-w-[860px] gap-[18px] px-5 py-12">
-		<header class="rounded-2xl border border-border bg-card p-[22px] text-card-foreground backdrop-blur-sm">
-			<span
-				class="inline-block rounded-full border border-destructive/20 bg-destructive/10 px-[10px] py-1.5 text-xs font-bold tracking-widest text-destructive uppercase"
-				>Svelte</span
-			>
-			<h1 class="mt-3 mb-1.5 text-[40px] leading-tight">yarr</h1>
-			<p class="mb-3.5 text-muted-foreground">
-				A tiny page showing: <code class="rounded-md bg-muted px-1.5 py-0.5">$:</code> reactive statements, bindings, events,
-				and templating.
-			</p>
-		</header>
+		<!--		<header class="rounded-2xl border border-border bg-card p-[22px] text-card-foreground backdrop-blur-sm">-->
+		<!--			<span-->
+		<!--				class="inline-block rounded-full border border-destructive/20 bg-destructive/10 px-[10px] py-1.5 text-xs font-bold tracking-widest text-destructive uppercase"-->
+		<!--				>Svelte</span-->
+		<!--			>-->
+		<!--			<h1 class="mt-3 mb-1.5 text-[40px] leading-tight">yarr</h1>-->
+		<!--			<p class="mb-3.5 text-muted-foreground">-->
+		<!--				A tiny page showing: <code class="rounded-md bg-muted px-1.5 py-0.5">$:</code> reactive statements, bindings, events,-->
+		<!--				and templating.-->
+		<!--			</p>-->
+		<!--		</header>-->
 
 		<form method="POST">
 			<Card.Root>

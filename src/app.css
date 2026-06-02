@@ -24,7 +24,8 @@
 	--secondary: oklch(0.968 0.007 247.896);
 	--secondary-foreground: oklch(0.208 0.042 265.755);
 	--muted: oklch(0.968 0.007 247.896);
-	--muted-foreground: oklch(0.554 0.046 257.417);
+	/* darker than default for legibility over the 3D canvas background */
+	--muted-foreground: oklch(0.42 0.04 257.417);
 	--accent: oklch(0.968 0.007 247.896);
 	--accent-foreground: oklch(0.208 0.042 265.755);
 	--destructive: oklch(0.577 0.245 27.325);
@@ -141,7 +142,7 @@
 /*TODO: niet werkend bedenk ff goede manier om bepaalde glass styling wat herbruikbaarder te maken zonder ai slop*/
 @layer components {
 	.glass {
-		@apply border border-border bg-card/80 text-card-foreground backdrop-blur-sm;
+		@apply border border-border bg-card/90 text-card-foreground backdrop-blur-md;
 	}
 }
 /*---break---*/
