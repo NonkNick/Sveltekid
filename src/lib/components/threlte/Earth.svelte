@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { T, useTask } from "@threlte/core";
 	import { interactivity, useTexture } from "@threlte/extras";
-	import { OrbitControls, Stars, FakeGlowMaterial, Environment } from "@threlte/extras";
+	import { OrbitControls, Stars, FakeGlowMaterial, Environment, Wobble } from "@threlte/extras";
 	import type { Mesh, Group } from "three";
 	import { Color } from "three";
+	import { SheetObject } from '@threlte/theatre'
+
 	import dayMap from "$lib/assets/2k_earth_daymap.jpg";
 	import earthNormal from "$lib/assets/2k_earth_normal_map.jpg";
 	import earthRough from "$lib/assets/2k_earth_roughness_map.jpg";
@@ -12,7 +14,7 @@
 	import sunMap from "$lib/assets/2k_sun.jpg";
 	import milkyWay from "$lib/assets/milkyway_2020_8k_final.png";
 
-	interactivity();
+	// interactivity();
 
 	const TAU = Math.PI * 2;
 	const emissiveColor = new Color(1, 1, 1); // Create once, reuse
@@ -84,9 +86,18 @@
 	const sunTexturePromise = useTexture(sunMap);
 </script>
 
-<T.PerspectiveCamera makeDefault position={camOffset} fov={70}>
-	<OrbitControls enableDamping enablePan enableZoom autoRotate autoRotateSpeed={-0.3} dampingFactor={0.05} />
-</T.PerspectiveCamera>
+<!--<SheetObject key="camera">-->
+<!--	{#snippet children({ Transform, Sync })}-->
+<!--		<Transform>-->
+			<T.PerspectiveCamera makeDefault position={camOffset} fov={70}>
+<!--TODO: voor animatie moet een refactor van orbitcontrols, want orbitcontrols manipuleert transform elke frame theatre.js probeert te animaten-->
+				<OrbitControls enableDamping autoRotate autoRotateSpeed={-0.3} dampingFactor={0.05} />
+			</T.PerspectiveCamera>
+<!--		</Transform>-->
+<!--	{/snippet}-->
+<!--</SheetObject>-->
+
+
 
 <Environment isBackground url={milkyWay} />
 
@@ -139,6 +150,11 @@
 						emissive={emissiveColor}
 						emissiveIntensity={0.5}
 					/>
+<!--					<Wobble-->
+<!--						speed={2}-->
+<!--						factor={2}-->
+
+<!--					/>-->
 				</T.Mesh>
 			{/await}
 		</T.Group>

@@ -29,6 +29,13 @@
       "when": 1779349992875,
       "tag": "0003_new_siren",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1780398777181,
+      "tag": "0004_purple_nicolaos",
+      "breakpoints": true
     }
   ]
 }

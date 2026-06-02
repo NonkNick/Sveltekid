@@ -13,7 +13,7 @@
 		oklch(0.95 0.03 160) 45%,
 		oklch(0.94 0.025 250) 100%
 	);
-	--navbar-gradient: linear-gradient(to top, rgba(255, 255, 255, 0.1), rgba(177, 206, 198, 0.93));
+	--navbar-gradient: linear-gradient(to top, rgba(255, 255, 255, 0.85), rgba(177, 206, 198, 0.93));
 	--foreground: oklch(0.129 0.042 264.695);
 	--card: oklch(1 0 0);
 	--card-foreground: oklch(0.129 0.042 264.695);

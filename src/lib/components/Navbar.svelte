@@ -28,10 +28,11 @@
 <div
 	class="navbar fixed bottom-0 z-50 flex h-16
          w-full items-center justify-center gap-4
-         rounded-t-2xl border-t border-border/60 bg-linear-to-b from-0% to-100%
+          border-t border-border/60 bg-linear-to-b from-0% to-100%
          shadow-[0_-8px_30px_rgba(0,0,0,0.12)] backdrop-blur-md transition-colors duration-300
-         md:top-0 md:bottom-auto md:rounded-t-none md:rounded-b-2xl
-         md:border-t-0 md:border-b md:border-border/60 md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+         md:top-0 md:bottom-auto
+         md:border-t-0 md:border-b md:border-border/60 md:shadow-[0_8px_30px_rgba(0,0,0,0.12)]
+"
 >
 	<NavigationMenu.Root>
 		<NavigationMenu.List class="flex items-center justify-center gap-4">
