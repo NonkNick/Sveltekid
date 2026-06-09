@@ -140,7 +140,7 @@
 
 	<T.Group position={earthPos}>
 		<Sheet name="cameraSheet">
-			<SheetObject key="wobble" props={{ speed: 2, factor: 2 }}>
+			<SheetObject key="wobble" props={{ speed: 0, factor: 0 }}>
 				{#snippet children({ Transform, Sync, values  })}
 					<Transform>
 						<T.Group rotation.z={earthTilt}>
