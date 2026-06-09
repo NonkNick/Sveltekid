@@ -4,7 +4,7 @@
 	import { OrbitControls, Stars, FakeGlowMaterial, Environment, Wobble } from "@threlte/extras";
 	import type { Mesh, Group } from "three";
 	import { Color } from "three";
-	import { SheetObject } from '@threlte/theatre'
+	import { SheetObject, Sheet } from "@threlte/theatre";
 
 	import dayMap from "$lib/assets/2k_earth_daymap.jpg";
 	import earthNormal from "$lib/assets/2k_earth_normal_map.jpg";
@@ -31,14 +31,6 @@
 
 	let earthRef = $state<Mesh>();
 	let worldRef = $state<Group>();
-
-	useTask((delta) => {
-		days += delta * daysPerSecond * speed;
-
-		if (worldRef) {
-			worldRef.position.set(-earthPos[0], -earthPos[1], -earthPos[2]);
-		}
-	});
 
 	let earthSpin = $derived((days / PERIOD.earthSpin) * TAU);
 	let earthOrbit = $derived((days / PERIOD.earthOrbit) * TAU);
@@ -84,20 +76,31 @@
 
 	const moonTexturePromise = useTexture(moonMap);
 	const sunTexturePromise = useTexture(sunMap);
+
+	useTask((delta) => {
+		days += delta * daysPerSecond * speed;
+
+		if (worldRef) {
+			worldRef.position.set(-earthPos[0], -earthPos[1], -earthPos[2]);
+		}
+	});
 </script>
 
-<!--<SheetObject key="camera">-->
-<!--	{#snippet children({ Transform, Sync })}-->
-<!--		<Transform>-->
-			<T.PerspectiveCamera makeDefault position={camOffset} fov={70}>
-<!--TODO: voor animatie moet een refactor van orbitcontrols, want orbitcontrols manipuleert transform elke frame theatre.js probeert te animaten-->
-				<OrbitControls enableDamping autoRotate autoRotateSpeed={-0.3} dampingFactor={0.05} />
-			</T.PerspectiveCamera>
-<!--		</Transform>-->
-<!--	{/snippet}-->
-<!--</SheetObject>-->
-
-
+<Sheet name="cameraSheet">
+	<SheetObject key="camera">
+		{#snippet children({ Transform, Sync })}
+			<Transform>
+				<T.PerspectiveCamera makeDefault position={camOffset} fov={70}>
+					<!--TODO: voor animatie moet een refactor van orbitcontrols, want orbitcontrols manipuleert transform elke frame theatre.js probeert te animaten-->
+					<OrbitControls enableDamping autoRotate autoRotateSpeed={-0.3} dampingFactor={0.05}>
+						<Sync autoRotateSpeed />
+					</OrbitControls>
+					<h1>test</h1>
+				</T.PerspectiveCamera>
+			</Transform>
+		{/snippet}
+	</SheetObject>
+</Sheet>
 
 <Environment isBackground url={milkyWay} />
 
@@ -134,30 +137,35 @@
 	{/await}
 
 	<!-- EARTH ASSEMBLY -->
-	<T.Group position={earthPos}>
-		<T.Group rotation.z={earthTilt}>
-			{#await earthTexturePromise then texture}
-				<T.Mesh rotation.y={earthSpin} bind:ref={earthRef} castShadow receiveShadow>
-					<T.SphereGeometry args={[1, 128, 128]} />
-					<T.MeshStandardMaterial
-						map={texture.map}
-						normalMap={texture.normalMap}
-						normalScale={[0.5, 0.5]}
-						roughnessMap={texture.roughnessMap}
-						roughness={1.2}
-						metalness={0}
-						emissiveMap={texture.emissiveMap}
-						emissive={emissiveColor}
-						emissiveIntensity={0.5}
-					/>
-<!--					<Wobble-->
-<!--						speed={2}-->
-<!--						factor={2}-->
 
-<!--					/>-->
-				</T.Mesh>
-			{/await}
-		</T.Group>
+	<T.Group position={earthPos}>
+		<Sheet name="cameraSheet">
+			<SheetObject key="wobble" props={{ speed: 0, factor: 0 }}>
+				{#snippet children({ Transform, Sync, values  })}
+					<Transform>
+						<T.Group rotation.z={earthTilt}>
+							{#await earthTexturePromise then texture}
+								<T.Mesh rotation.y={earthSpin} bind:ref={earthRef} castShadow receiveShadow>
+									<T.SphereGeometry args={[1, 128, 128]} />
+									<T.MeshStandardMaterial
+										map={texture.map}
+										normalMap={texture.normalMap}
+										normalScale={[0.5, 0.5]}
+										roughnessMap={texture.roughnessMap}
+										roughness={1.2}
+										metalness={0}
+										emissiveMap={texture.emissiveMap}
+										emissive={emissiveColor}
+										emissiveIntensity={0.5}
+									/>
+									<Wobble speed={values.speed} factor={values.factor} />
+								</T.Mesh>
+							{/await}
+						</T.Group>
+					</Transform>
+				{/snippet}
+			</SheetObject>
+		</Sheet>
 
 		<!-- MOON -->
 		<T.Group position={moonPos}>

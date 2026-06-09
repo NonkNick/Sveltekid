@@ -8,6 +8,8 @@
 	import Navbar from "$lib/components/Navbar.svelte";
 	import { WebGLRenderer } from "three";
 	import { Toaster } from "$lib/components/ui/sonner/index.js";
+	import tester from "$lib/animations/tester.json";
+	import { Project, Sequence, Sheet, type SequenceController } from "@threlte/theatre";
 
 	let { children } = $props();
 
@@ -22,7 +24,12 @@
 {#if !isStudio}
 	<div class="canvas-bg">
 		<Canvas>
-			<CanvasPortalTarget />
+			<Project config={{ state: tester }}>
+				<Sheet name="cameraSheet">
+					<CanvasPortalTarget />
+					<Sequence autoplay iterationCount={Infinity} />
+				</Sheet>
+			</Project>
 		</Canvas>
 	</div>
 {/if}

@@ -1,41 +1,29 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button/index.js";
-	import ThreeDemo from "$lib/components/demo/ThreeDemo.svelte";
 	import { ui } from "$lib/stores/ui.svelte";
-	import { onMount } from "svelte";
-	import CanvasPortal from "$lib/components/CanvasPortal.svelte";
-	import { T } from "@threlte/core";
-	import { HTML } from "@threlte/extras";
-	import { OrbitControls } from "@threlte/extras";
+	import ChevronUp from "@lucide/svelte/icons/chevron-up";
 
 	// onMount(() => {
 	//     import("$lib/game/main");
 	// });
 </script>
 
-<div class="flex h-[200px] w-full flex-col items-center justify-end overflow-hidden">
+<div class="flex h-dvh w-full flex-col items-center justify-end overflow-hidden">
 	{#if !ui.hidden}
-		<Button onclick={() => (ui.hidden = !ui.hidden)} variant="positive" size="xl" class="w-[100px]">Play</Button>
+<!--		<Button onclick={() => (ui.hidden = !ui.hidden)} variant="positive" size="xl" class="w-[100px]">Play</Button>-->
+
+		<span class="animate-bounce">
+					<ChevronUp size={112} strokeWidth={0.8} class="mb-7 text-(--navbar-accent)/50" />
+		</span>
+		<span class="animate-[bounce_1s]">
+					<ChevronUp size={112} strokeWidth={0.8} class="mb-7 text-(--navbar-accent)/50" />
+		</span>
+<!--		<ChevronUp size={128} strokeWidth={0.5} class="mb-8 scale-x-150 text-white animate-ping" />-->
+
+
 	{/if}
-	<!--    <ThreeDemo class="absolute inset-0 -z-10" />-->
-
-	<!--    <script src="$lib/game/main.ts"></script>-->
-
-	<!--    <CanvasPortal>-->
-	<!--        <T.PerspectiveCamera-->
-	<!--                position.z={10}-->
-	<!--                makeDefault-->
-	<!--        />-->
-	<!--        <OrbitControls enableDamping />-->
-	<!--        <T.Mesh>-->
-	<!--            <T.BoxGeometry />-->
-	<!--            <T.MeshBasicMaterial color="red" />-->
-	<!--        </T.Mesh>-->
-	<!--        <HTML>-->
-	<!--        <h1>Hello, World!</h1>-->
-	<!--        </HTML>-->
-	<!--    </CanvasPortal>-->
 </div>
+
 
 <style>
 </style>

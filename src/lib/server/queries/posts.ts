@@ -71,7 +71,9 @@ export async function getCommentsByPostId(postId: string, userId?: string): Prom
 		.select({
 			id: comment.id,
 			postId: comment.postId,
-			parentId: comment.parentId,			content: comment.content,			createdAt: comment.createdAt,
+			parentId: comment.parentId,
+			content: comment.content,
+			createdAt: comment.createdAt,
 			authorId: comment.authorId,
 			authorName: user.name,
 			authorImage: user.image,
