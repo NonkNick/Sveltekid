@@ -2,7 +2,7 @@
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { ui } from "$lib/stores/ui.svelte";
 	import ChevronUp from "@lucide/svelte/icons/chevron-up";
-	import { Spring } from 'svelte/motion';
+	import { Spring, Tween } from "svelte/motion";
 
 	// $effect(() => {
 	// 	if (isDragging) {
