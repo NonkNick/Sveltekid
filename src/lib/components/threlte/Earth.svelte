@@ -10,6 +10,7 @@
 	import earthNormal from "$lib/assets/2k_earth_normal_map.jpg";
 	import earthRough from "$lib/assets/2k_earth_roughness_map.jpg";
 	import earthNight from "$lib/assets/2k_earth_nightmap.jpg";
+	import earthClouds from "$lib/assets/2k_earth_clouds.jpg";
 	import moonMap from "$lib/assets/2k_moon.jpg";
 	import sunMap from "$lib/assets/2k_sun.jpg";
 	import milkyWay from "$lib/assets/milkyway_2020_8k_final.png";
@@ -20,8 +21,8 @@
 	const emissiveColor = new Color(1, 1, 1); // Create once, reuse
 
 	let speed = $state(1);
-	let days = $state(0);
-	const daysPerSecond = 0.2;
+	let days = $state(16);
+	const daysPerSecond = 0.05;
 
 	const PERIOD = {
 		earthSpin: 1,
@@ -45,11 +46,15 @@
 		0,
 		Math.sin(earthOrbit) * earthRadius
 	]);
+
+	let cloudSpin = $derived(earthSpin * 1.08);
+
 	let moonPos = $derived<[number, number, number]>([
 		Math.cos(moonOrbit) * moonRadius,
 		0,
 		Math.sin(moonOrbit) * moonRadius
 	]);
+
 	const moonFaceOffset = Math.PI;
 
 	const camOffset: [number, number, number] = [-1.5, 1.5, 3.5];
@@ -71,7 +76,8 @@
 		map: dayMap,
 		normalMap: earthNormal,
 		roughnessMap: earthRough,
-		emissiveMap: earthNight
+		emissiveMap: earthNight,
+		clouds: earthClouds
 	});
 
 	const moonTexturePromise = useTexture(moonMap);
@@ -92,9 +98,11 @@
 			<Transform>
 				<T.PerspectiveCamera makeDefault position={camOffset} fov={70}>
 					<!--TODO: voor animatie moet een refactor van orbitcontrols, want orbitcontrols manipuleert transform elke frame theatre.js probeert te animaten-->
-					<OrbitControls enableDamping autoRotate autoRotateSpeed={-0.3} dampingFactor={0.05}>
-						<Sync autoRotateSpeed />
-					</OrbitControls>
+<!--					<OrbitControls enableDamping autoRotate autoRotateSpeed={-0.1} dampingFactor={0.05}>-->
+<!--						<Sync autoRotateSpeed />-->
+<!--					</OrbitControls>-->
+					<OrbitControls/>
+
 					<h1>test</h1>
 				</T.PerspectiveCamera>
 			</Transform>
@@ -159,6 +167,16 @@
 										emissiveIntensity={0.5}
 									/>
 									<Wobble speed={values.speed} factor={values.factor} />
+								</T.Mesh>
+								<!-- CLOUD LAYER -->
+								<T.Mesh rotation.y={cloudSpin}>
+									<T.SphereGeometry args={[1.015, 64, 64]} />
+									<T.MeshStandardMaterial
+										alphaMap={texture.clouds}
+										transparent
+										opacity={0.9}
+										depthWrite={false}
+									/>
 								</T.Mesh>
 							{/await}
 						</T.Group>
